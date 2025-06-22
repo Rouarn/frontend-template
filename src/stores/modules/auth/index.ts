@@ -1,7 +1,12 @@
 import { SetupStoreId } from '@/enum'
+import { fetchLogin, getAuthMenuListApi } from '@/service/api/login'
 import { defineStore } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
+  const router = useRouter()
+  const route = useRoute()
+
   const token = ref(window.localStorage.getItem('token'))
 
   const userInfo: Api.Auth.UserInfo = reactive({
@@ -21,8 +26,28 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     token.value = value
   }
 
-  const getAuthMenuList = () => {
-    return []
+  const getAuthMenuList = async () => {
+    const { data } = await getAuthMenuListApi()
+    menuList.value = data
+  }
+
+  /**
+   * Login
+   *
+   * @param userName User name
+   * @param password Password
+   * @param [redirect=true] Whether to redirect after login. Default is `true`
+   */
+  async function login(userName: string, password: string, redirect = true) {
+    const { data } = await fetchLogin(userName, password)
+    setToken(data.token)
+    const needRedirect = route.query?.redirect as string
+
+    if (needRedirect && redirect) {
+      router.push(needRedirect)
+    } else {
+      router.push('/')
+    }
   }
 
   return {
@@ -31,6 +56,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     isLogin,
     authMenuListGet,
     flatMenuListGet,
+    login,
     setToken,
     getAuthMenuList,
   }

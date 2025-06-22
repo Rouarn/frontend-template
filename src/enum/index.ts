@@ -12,3 +12,14 @@ export enum globalConfig {
   LOGIN_URL = '/login',
   ROUTER_WHITE_LIST = '/500,/404',
 }
+
+/**
+ * @description：请求配置
+ */
+export enum ResultEnum {
+  SUCCESS = 200,
+  ERROR = 500,
+  OVERDUE = 401,
+  TIMEOUT = 30000,
+  TYPE = 'success',
+}

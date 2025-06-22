@@ -4,9 +4,11 @@ import { setupStore } from './stores'
 import App from './App.vue'
 import router from './router'
 import { setupI18n } from './locales'
-import { setupDayjs, setupNProgress } from './plugins'
+import { setupDayjs, setupLoading, setupNProgress } from './plugins'
 
 function setupApp() {
+  setupLoading()
+
   setupNProgress()
 
   setupDayjs()

@@ -45,8 +45,8 @@ router.beforeEach(async (to, from, next) => {
   window.NProgress?.start?.()
 
   // // 2.动态设置标题
-  // const title = import.meta.env.VITE_GLOB_APP_TITLE
-  // document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
+  const title = import.meta.env.VITE_APP_TITLE
+  document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 
   // 3.判断访问页面是否是常规路由，如果存是直接放行
   if (to.meta.isConstant) return next()
@@ -59,7 +59,8 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 5.判断是否有 Token，没有重定向到 login 页面
-  if (!authStore.token) return next({ path: globalConfig.LOGIN_URL, replace: true })
+  if (!authStore.token)
+    return next({ path: globalConfig.LOGIN_URL, replace: true, query: { redirect: to.fullPath } })
 
   // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuListGet.length) {

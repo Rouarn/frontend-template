@@ -1,4 +1,4 @@
-import { computed, ref, toRefs } from 'vue'
+import { computed, Ref, ref, toRefs, watch } from 'vue'
 import { SetupStoreId } from '@/enum'
 import { usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
@@ -31,6 +31,15 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
 
   /** Naive theme */
   const naiveTheme = computed(() => getNaiveTheme(themeColors.value))
+
+  // themeColors change, update css vars and storage theme color
+  watch(
+    themeColors,
+    (val) => {
+      window.localStorage.setItem('themeColor', val.primary)
+    },
+    { immediate: true },
+  )
 
   return {
     ...toRefs(settings.value),

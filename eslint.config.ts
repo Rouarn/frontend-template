@@ -17,6 +17,12 @@ export default defineConfigWithVueTs(
 
   {
     rules: {
+      'vue/multi-word-component-names': [
+        'warn',
+        {
+          ignores: ['index', 'App', 'Register', '[id]', '[url]'],
+        },
+      ],
       // 组件名大驼峰
       'vue/component-name-in-template-casing': [
         'error',

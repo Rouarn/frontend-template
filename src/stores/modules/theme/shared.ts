@@ -63,7 +63,6 @@ function getNaiveThemeColors(colors: App.Theme.ThemeColor, recommended = false) 
     })
   })
 
-  console.log('themeColors: ', themeColors)
   return themeColors
 }
 
