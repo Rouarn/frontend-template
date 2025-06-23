@@ -12,12 +12,7 @@ const sortedStringify = (obj: any) => {
 
 // 获取请求的唯一标识
 export const getPendingUrl = (config: CustomAxiosRequestConfig) => {
-  return [
-    config.method,
-    config.url,
-    sortedStringify(config.data),
-    sortedStringify(config.params),
-  ].join('&')
+  return [config.method, config.url, sortedStringify(config.data), sortedStringify(config.params)].join('&')
 }
 
 export class AxiosCanceler {

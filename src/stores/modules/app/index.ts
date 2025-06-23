@@ -11,9 +11,7 @@ export const useAppStore = defineStore(SetupStoreId.App, () => {
   /** Is mobile layout */
   const isMobile = breakpoints.smaller('sm')
 
-  const locale = ref<App.I18n.LangType>(
-    (window.localStorage.getItem('lang') || 'zh-CN') as App.I18n.LangType,
-  )
+  const locale = ref<App.I18n.LangType>((window.localStorage.getItem('lang') || 'zh-CN') as App.I18n.LangType)
 
   /**
    * Reload page

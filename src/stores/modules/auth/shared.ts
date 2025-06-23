@@ -5,14 +5,9 @@ import { klona as jsonClone } from 'klona'
  * @param {Array} menuList 菜单列表
  * @returns {Array}
  */
-export function getFlatMenuList(
-  menuList: App.Global.Menu.MenuOptions[],
-): App.Global.Menu.MenuOptions[] {
+export function getFlatMenuList(menuList: App.Global.Menu.MenuOptions[]): App.Global.Menu.MenuOptions[] {
   const newMenuList: App.Global.Menu.MenuOptions[] = jsonClone(menuList)
-  return newMenuList.flatMap((item) => [
-    item,
-    ...(item.children ? getFlatMenuList(item.children) : []),
-  ])
+  return newMenuList.flatMap((item) => [item, ...(item.children ? getFlatMenuList(item.children) : [])])
 }
 
 /**

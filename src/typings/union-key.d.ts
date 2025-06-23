@@ -4,14 +4,7 @@ declare namespace UnionKey {
   type ThemeScheme = 'light' | 'dark' | 'auto'
 
   /** Page animate mode */
-  type ThemePageAnimateMode =
-    | 'fade'
-    | 'fade-slide'
-    | 'fade-bottom'
-    | 'fade-scale'
-    | 'zoom-fade'
-    | 'zoom-out'
-    | 'none'
+  type ThemePageAnimateMode = 'fade' | 'fade-slide' | 'fade-bottom' | 'fade-scale' | 'zoom-fade' | 'zoom-out' | 'none'
 
   /** Unocss animate key */
   type UnoCssAnimateKey =
