@@ -22,12 +22,12 @@ declare namespace Env {
     readonly VITE_PROXY: string
     /** The mode of the application */
     readonly VITE_ROUTER_MODE: 'history' | 'hash'
-    /** The url of the login page */
-    readonly VITE_LOGIN_URL: string
+    /** The public path of the application */
+    readonly VITE_PUBLIC_PATH: string
   }
 }
 
 interface ImportMeta {
   readonly env: Env.ImportMeta
-  readonly glob: (string) => Record<string, unknown>
+  glob: (arg: string) => Record<string, unknown>
 }

@@ -18,6 +18,7 @@ export default defineConfig((configEnv) => {
   const proxyConfig = viteEnv.VITE_PROXY ? JSON.parse(viteEnv.VITE_PROXY) : []
 
   return {
+    base: viteEnv.VITE_PUBLIC_PATH,
     plugins: setupVitePlugins(viteEnv, buildTime),
     define: {
       BUILD_TIME: JSON.stringify(buildTime),
