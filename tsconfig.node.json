@@ -12,7 +12,7 @@
       "~/*": ["./*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "node", "./src/typings/vite-env", "naive-ui/volar"],
+    "types": ["vite/client", "node", "./src/typings/vite-env.d.ts", "naive-ui/volar"],
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,

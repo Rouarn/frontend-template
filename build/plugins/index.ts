@@ -12,7 +12,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
   const plugins: PluginOption = [
     vue(),
     vueJsx(),
-    vueDevTools(),
+    vueDevTools({ launchEditor: viteEnv.VITE_DEVTOOLS_LAUNCH_EDITOR }),
     UnoCSS(),
     progress(),
     AutoImport({

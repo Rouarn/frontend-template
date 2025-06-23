@@ -1,3 +1,5 @@
+import { VitePluginVueDevToolsOptions } from 'vite-plugin-vue-devtools'
+
 /**
  * Namespace Env
  *
@@ -24,6 +26,8 @@ declare namespace Env {
     readonly VITE_ROUTER_MODE: 'history' | 'hash'
     /** The public path of the application */
     readonly VITE_PUBLIC_PATH: string
+    /** Whether to enable the Vue DevTools */
+    readonly VITE_DEVTOOLS_LAUNCH_EDITOR: VitePluginVueDevToolsOptions['launchEditor']
   }
 }
 
