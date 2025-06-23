@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig,
   AxiosResponse,
 } from 'axios'
-import { globalConfig, ResultEnum } from '@/enum'
+import { GlobalConfig, ResultEnum } from '@/enum'
 import { checkStatus } from './checkStatus'
 import { AxiosCanceler } from './axiosCancel'
 import { useAuthStore } from '@/stores/modules/auth'
@@ -77,7 +77,7 @@ class RequestHttp {
         // 登录失效
         if (data.code == ResultEnum.OVERDUE) {
           userStore.setToken('')
-          router.replace(globalConfig.LOGIN_URL)
+          router.replace(GlobalConfig.LOGIN_URL)
           window.$message?.error(data.msg)
           return Promise.reject(data)
         }

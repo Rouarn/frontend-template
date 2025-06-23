@@ -1,7 +1,7 @@
 import router from '@/router/index'
 import type { RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '@/stores/modules/auth'
-import { globalConfig } from '@/enum'
+import { GlobalConfig } from '@/enum'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -20,7 +20,7 @@ export const initDynamicRouter = async () => {
     if (!authStore.authMenuListGet.length) {
       window.$message?.error('当前账号无任何菜单权限，请联系系统管理员！')
       authStore.setToken('')
-      await router.replace(globalConfig.LOGIN_URL)
+      await router.replace(GlobalConfig.LOGIN_URL)
       return Promise.reject('No permission')
     }
 
@@ -73,7 +73,7 @@ export const initDynamicRouter = async () => {
     console.log('更新后的路由表:', router.getRoutes())
   } catch (error) {
     authStore.setToken('')
-    await router.replace(globalConfig.LOGIN_URL)
+    await router.replace(GlobalConfig.LOGIN_URL)
     return Promise.reject(error)
   }
 }

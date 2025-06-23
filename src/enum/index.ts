@@ -7,7 +7,7 @@ export enum SetupStoreId {
 }
 
 // 全局默认配置项
-export enum globalConfig {
+export enum GlobalConfig {
   HOME_URL = '/home/index',
   LOGIN_URL = '/login',
   ROUTER_WHITE_LIST = '/500,/404',
