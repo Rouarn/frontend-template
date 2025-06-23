@@ -9,96 +9,74 @@
   <body>
     <div id="app">
       <style>
-        html,
-        body,
-        #app {
-          width: 100%;
-          height: 100%;
-          padding: 0;
+        body {
           margin: 0;
         }
-        .loading-box {
+        .loader-box {
+          /* 100%窗口高度 */
+          height: 100vh;
+          /* 弹性布局 水平+垂直居中 */
           display: flex;
-          flex-direction: column;
-          align-items: center;
           justify-content: center;
-          width: 100%;
-          height: 100%;
-        }
-        .loading-box .loading-wrap {
-          display: flex;
           align-items: center;
-          justify-content: center;
-          padding: 98px;
+          background-color: #222;
         }
-        .dot {
+        /* 外圈 */
+        .loader {
+          width: 200px;
+          height: 200px;
+          /* 相对定位 */
           position: relative;
-          box-sizing: border-box;
-          display: inline-block;
-          width: 32px;
-          height: 32px;
-          font-size: 32px;
-          transform: rotate(45deg);
-          animation: ant-rotate 1.2s infinite linear;
+          border-radius: 50%;
+          border: 4px solid transparent;
+          border-top-color: #4bc0c8;
+          /* 执行动画：动画名 时长 线性的 无限次播放 */
+          animation: spin 2s linear infinite;
         }
-        .dot i {
+        /* 中圈 */
+        .loader::before {
+          content: '';
+          /* 绝对定位 */
           position: absolute;
-          display: block;
-          width: 14px;
-          height: 14px;
-          background-color: #409eff;
-          border-radius: 100%;
-          opacity: 0.3;
-          transform: scale(0.75);
-          transform-origin: 50% 50%;
-          animation: ant-spin-move 1s infinite linear alternate;
+          left: 5px;
+          top: 5px;
+          right: 5px;
+          bottom: 5px;
+          border-radius: 50%;
+          border: 4px solid transparent;
+          border-top-color: #c779d0;
+          /* 执行动画：动画名 时长 线性的 无限次播放 */
+          animation: spin 3s linear infinite;
         }
-        .dot i:nth-child(1) {
-          top: 0;
-          left: 0;
-        }
-        .dot i:nth-child(2) {
-          top: 0;
-          right: 0;
-          animation-delay: 0.4s;
-        }
-        .dot i:nth-child(3) {
-          right: 0;
-          bottom: 0;
-          animation-delay: 0.8s;
-        }
-        .dot i:nth-child(4) {
-          bottom: 0;
-          left: 0;
-          animation-delay: 1.2s;
+        /* 内圈 */
+        .loader::after {
+          content: '';
+          position: absolute;
+          left: 15px;
+          top: 15px;
+          right: 15px;
+          bottom: 15px;
+          border-radius: 50%;
+          border: 4px solid transparent;
+          border-top-color: #feac5e;
+          /* 执行动画：动画名 时长 线性的 无限次播放 */
+          animation: spin 1.5s linear infinite;
         }
 
-        @keyframes ant-rotate {
-          to {
-            transform: rotate(405deg);
+        /* 定义动画 */
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
           }
-        }
-
-        @keyframes ant-spin-move {
-          to {
-            opacity: 1;
+          100% {
+            transform: rotate(360deg);
           }
         }
       </style>
-      <div class="loading-box">
-        <div class="loading-wrap">
-          <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
-        </div>
+      <div class="loader-box">
+        <div class="loader"></div>
       </div>
     </div>
-    <script>
-      const themeColor = window.localStorage.getItem('themeColor')
-      if (themeColor) {
-        const dot = document.querySelectorAll('.dot i')
-        const html = document.querySelector('html')
-        dot.forEach((item) => (item.style.background = themeColor))
-      }
-    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
