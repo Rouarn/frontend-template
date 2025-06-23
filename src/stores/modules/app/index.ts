@@ -1,7 +1,7 @@
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { useBoolean } from '@/utils'
+import useBoolean from '@/utils/use-boolean'
 
 export const useAppStore = defineStore(SetupStoreId.App, () => {
   const breakpoints = useBreakpoints(breakpointsTailwind)

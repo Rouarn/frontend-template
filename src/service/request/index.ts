@@ -34,7 +34,7 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
-        const userStore = useAuthStore()
+        // const userStore = useAuthStore()
         // 重复请求不需要取消，在 api 服务中通过指定的第三个参数: { cancel: false } 来控制
         config.cancel ??= true
         if (config.cancel) {
@@ -46,7 +46,8 @@ class RequestHttp {
           window.$loading?.open()
         }
         if (config.headers && typeof config.headers.set === 'function') {
-          config.headers.set('x-access-token', userStore.token)
+          // config.headers.set('x-access-token', userStore.token)
+          config.headers.set('apifoxToken', `XL299LiMEDZ0H5h3A29PxwQXdMJqWyY2`)
         }
         return config
       },

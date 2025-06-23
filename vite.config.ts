@@ -15,7 +15,7 @@ export default defineConfig((configEnv) => {
 
   const buildTime = getBuildTime()
 
-  const proxyConfig = viteEnv.VITE_PROXY ? JSON.parse(viteEnv.VITE_PROXY) : []
+  const enableProxy = configEnv.command === 'serve' && !configEnv.isPreview
 
   return {
     base: viteEnv.VITE_PUBLIC_PATH,
@@ -42,7 +42,7 @@ export default defineConfig((configEnv) => {
       port: viteEnv.VITE_PORT,
       open: viteEnv.VITE_OPEN,
       cors: true,
-      proxy: createViteProxy(proxyConfig),
+      proxy: createViteProxy(viteEnv, enableProxy),
     },
     preview: {
       port: 9725,

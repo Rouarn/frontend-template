@@ -143,6 +143,13 @@ declare namespace App {
 
   /** Service namespace */
   namespace Service {
+    interface ServiceConfigItem {
+      /** The backend service base url */
+      baseURL: string
+      /** The proxy pattern of the backend service base url */
+      proxyPattern: string
+    }
+
     /** The backend service response data */
     type Response<T = unknown> = {
       /** The backend service response code */

@@ -1,4 +1,4 @@
-import { PORT1 } from '@/service/request/servicePort'
+// import { PORT1 } from '@/service/request/servicePort'
 import authMenuList from '@/assets/json/authMenuList.json'
 import http from '@/service/request'
 
@@ -9,7 +9,7 @@ import http from '@/service/request'
  * @param password Password
  */
 export function fetchLogin(userName: string, password: string) {
-  return http.post<Api.Auth.LoginToken>(PORT1 + `/auth/login`, {
+  return http.post<Api.Auth.LoginToken>('/auth/login', {
     userName,
     password,
   })
