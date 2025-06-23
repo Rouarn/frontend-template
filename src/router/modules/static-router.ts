@@ -1,4 +1,4 @@
-import { globalConfig } from '@/enum'
+import { GlobalConfig } from '@/enum'
 import type { RouteRecordRaw } from 'vue-router'
 
 /**
@@ -7,10 +7,10 @@ import type { RouteRecordRaw } from 'vue-router'
 export const staticRouter: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: globalConfig.HOME_URL,
+    redirect: GlobalConfig.HOME_URL,
   },
   {
-    path: globalConfig.LOGIN_URL,
+    path: GlobalConfig.LOGIN_URL,
     name: 'login',
     component: () => import('@/views/login/index.vue'),
     meta: {
@@ -22,8 +22,8 @@ export const staticRouter: RouteRecordRaw[] = [
     path: '/layout',
     name: 'layout',
     component: () => import('@/layouts/blank-layout/index.vue'),
-    redirect: globalConfig.HOME_URL,
-    children: [], // 明确初始化为空数组
+    redirect: GlobalConfig.HOME_URL,
+    children: [],
   },
 ]
 

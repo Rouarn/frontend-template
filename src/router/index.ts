@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import { useAuthStore } from '@/stores/modules/auth'
 import { initDynamicRouter } from '@/router/modules/dynamic-router'
 import { staticRouter, errorRouter } from '@/router/modules/static-router'
-import { globalConfig } from '@/enum'
+import { GlobalConfig } from '@/enum'
 
 const mode = import.meta.env.VITE_ROUTER_MODE
 
@@ -40,35 +40,41 @@ const router = createRouter({
  * */
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
-
-  console.log('路由拦截', to, from)
+  console.log('路由拦截 beforeEach', to, from)
 
   // 1.NProgress 开始
   window.NProgress?.start?.()
 
-  // // 2.动态设置标题
+  // 2.动态设置标题
   const title = import.meta.env.VITE_APP_TITLE
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 
-  // 3.判断访问页面是否是常规路由，如果存是直接放行
-  if (to.meta.isConstant) return next()
+  // 3.判断访问页面是否是常规路由，如果是直接放行
+  if (to.meta.isConstant) {
+    return next()
+  }
 
   // 4.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
-  if (to.path.toLocaleLowerCase() === globalConfig.LOGIN_URL) {
-    console.log('访问登陆页')
+  if (to.path.toLocaleLowerCase() === GlobalConfig.LOGIN_URL) {
     if (authStore.token) return next(from.fullPath)
     resetRouter()
     return next()
   }
 
-  // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
-  if (!authStore.authMenuListGet.length) {
-    console.log('没有菜单列表，重新获取菜单列表')
-    await initDynamicRouter()
-    return next({ ...to, replace: true });
+  // 5.检查是否有token（只有非常规路由才会执行到这里）
+  if (!authStore.token && from.path !== '/') {
+    window.$message?.error('请先登录！')
+    resetRouter()
+    return next({ path: GlobalConfig.LOGIN_URL, query: { redirect: to.fullPath } })
   }
 
-  // 8.正常访问页面
+  // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
+  if (!authStore.authMenuListGet.length) {
+    await initDynamicRouter()
+    return next({ ...to, replace: true })
+  }
+
+  // 7.正常访问页面
   next()
 })
 
