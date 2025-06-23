@@ -33,6 +33,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   const getAuthMenuList = async () => {
     const { data } = await getAuthMenuListApi()
+    login('admin', '123456')
     menuList.value = data
   }
 

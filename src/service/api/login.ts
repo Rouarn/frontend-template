@@ -1,6 +1,6 @@
-// import { PORT1 } from '@/service/request/servicePort'
+import { PORT1 } from '@/service/request/servicePort'
 import authMenuList from '@/assets/json/authMenuList.json'
-// import http from '@/service/request'
+import http from '@/service/request'
 
 /**
  * Login
@@ -9,14 +9,18 @@ import authMenuList from '@/assets/json/authMenuList.json'
  * @param password Password
  */
 export function fetchLogin(userName: string, password: string) {
-  return Promise.resolve({
-    code: 200,
-    data: {
-      token: '123456',
-      userName,
-      password,
-    },
+  return http.post<Api.Auth.LoginToken>(PORT1 + `/auth/login`, {
+    userName,
+    password,
   })
+  // return Promise.resolve({
+  //   code: 200,
+  //   data: {
+  //     token: '123456',
+  //     userName,
+  //     password,
+  //   },
+  // })
 }
 
 // 获取菜单列表
