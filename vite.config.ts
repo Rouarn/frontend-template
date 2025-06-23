@@ -7,11 +7,6 @@ import { createViteProxy, getBuildTime } from './build/config'
 // https://vite.dev/config/
 export default defineConfig((configEnv) => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as unknown as Env.ImportMeta
-  for (const [key, value] of Object.entries(viteEnv)) {
-    if (viteEnv[key] !== undefined) {
-      viteEnv[key] = value === 'true' ? true : value === 'false' ? false : value
-    }
-  }
 
   const buildTime = getBuildTime()
 
@@ -19,10 +14,6 @@ export default defineConfig((configEnv) => {
 
   return {
     base: viteEnv.VITE_PUBLIC_PATH,
-    plugins: setupVitePlugins(viteEnv, buildTime),
-    define: {
-      BUILD_TIME: JSON.stringify(buildTime),
-    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -37,10 +28,14 @@ export default defineConfig((configEnv) => {
         },
       },
     },
+    plugins: setupVitePlugins(viteEnv, buildTime),
+    define: {
+      BUILD_TIME: JSON.stringify(buildTime),
+    },
     server: {
       host: '0.0.0.0',
       port: viteEnv.VITE_PORT,
-      open: viteEnv.VITE_OPEN,
+      open: viteEnv.VITE_OPEN === 'Y',
       cors: true,
       proxy: createViteProxy(viteEnv, enableProxy),
     },
@@ -54,7 +49,7 @@ export default defineConfig((configEnv) => {
       // minify: "terser",
       // terserOptions: {
       // 	compress: {
-      // 		drop_console: viteEnv.VITE_DROP_CONSOLE,
+      // 		drop_console: viteEnv.VITE_DROP_CONSOLE === 'Y',
       // 		drop_debugger: true
       // 	}
       // },

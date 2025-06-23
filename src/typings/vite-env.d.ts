@@ -17,7 +17,7 @@ declare namespace Env {
     /** The port of the application */
     readonly VITE_PORT: number
     /** Whether to open the application in the browser */
-    readonly VITE_OPEN: boolean
+    readonly VITE_OPEN: string
     /** Whether to use https */
     readonly VITE_PROXY: string
     /** The mode of the application */

@@ -9,11 +9,11 @@ type ProxyTargetList = Record<string, ProxyOptions>
  * @param list
  */
 export function createViteProxy(viteEnv: Env.ImportMeta, enable: boolean) {
-  const isEnableHttpProxy = enable && viteEnv.VITE_HTTP_PROXY
+  const isEnableHttpProxy = enable && viteEnv.VITE_HTTP_PROXY === 'Y'
 
   if (!isEnableHttpProxy) return undefined
 
-  const isEnableProxyLog = viteEnv.VITE_PROXY_LOG
+  const isEnableProxyLog = viteEnv.VITE_PROXY_LOG === 'Y'
 
   const proxyConfig = viteEnv.VITE_PROXY ? JSON.parse(viteEnv.VITE_PROXY) : []
 
