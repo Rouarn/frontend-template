@@ -19,9 +19,8 @@ export const initDynamicRouter = async () => {
     // 2.判断当前用户有没有菜单权限
     if (!authStore.authMenuListGet.length) {
       window.$message?.error('当前账号无任何菜单权限，请联系系统管理员！')
-      authStore.setToken('')
-      await router.replace(GlobalConfig.LOGIN_URL)
-      return Promise.reject('No permission')
+      // authStore.setToken('')
+      // return Promise.reject('No permission')
     }
 
     // 3.准备要添加的路由

@@ -40,7 +40,6 @@ const router = createRouter({
  * */
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
-  console.log('路由拦截 beforeEach', to, from)
 
   // 1.NProgress 开始
   window.NProgress?.start?.()
@@ -48,6 +47,9 @@ router.beforeEach(async (to, from, next) => {
   // 2.动态设置标题
   const title = import.meta.env.VITE_APP_TITLE
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
+
+  // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
+  await initDynamicRouter()
 
   // 3.判断访问页面是否是常规路由，如果是直接放行
   if (to.meta.isConstant) {
@@ -66,12 +68,6 @@ router.beforeEach(async (to, from, next) => {
     window.$message?.error('请先登录！')
     resetRouter()
     return next({ path: GlobalConfig.LOGIN_URL, query: { redirect: to.fullPath } })
-  }
-
-  // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
-  if (!authStore.authMenuListGet.length) {
-    await initDynamicRouter()
-    return next({ ...to, replace: true })
   }
 
   // 7.正常访问页面

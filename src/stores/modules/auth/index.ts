@@ -12,8 +12,6 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const userInfo: Api.Auth.UserInfo = reactive({
     userId: '',
     userName: '',
-    roles: [],
-    buttons: [],
   })
 
   const isLogin = computed(() => Boolean(token.value))
