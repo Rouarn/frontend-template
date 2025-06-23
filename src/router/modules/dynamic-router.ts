@@ -1,6 +1,7 @@
 import router from '@/router/index'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '@/stores/modules/auth'
+import { globalConfig } from '@/enum'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -19,28 +20,60 @@ export const initDynamicRouter = async () => {
     if (!authStore.authMenuListGet.length) {
       window.$message?.error('当前账号无任何菜单权限，请联系系统管理员！')
       authStore.setToken('')
-      router.replace(import.meta.env.LOGIN_URL)
+      await router.replace(globalConfig.LOGIN_URL)
       return Promise.reject('No permission')
     }
 
-    // 3.添加动态路由
+    // 3.准备要添加的路由
+    const routesToAdd: RouteRecordRaw[] = []
+    const layoutChildren: RouteRecordRaw[] = []
+
     authStore.flatMenuListGet.forEach((item) => {
+      // 克隆对象避免修改原始数据
+      const route = { ...item } as unknown as RouteRecordRaw
+
+      // 处理子路由
       if (item.children) {
-        delete item.children
+        delete route.children
       }
-      if (item.component && typeof item.component == 'string') {
-        item.component = modules['/src/views' + item.component + '.vue']
+
+      // 处理组件路径
+      if (item.component) {
+        route.component = modules['/src/views' + item.component + '.vue'] as () => Promise<unknown>
       }
+
+      // 分类路由
       if (item.meta.isFull) {
-        router.addRoute(item as unknown as RouteRecordRaw)
+        routesToAdd.push(route)
       } else {
-        router.addRoute('layout', item as unknown as RouteRecordRaw)
+        layoutChildren.push(route)
       }
     })
+
+    // 4.添加全屏路由
+    routesToAdd.forEach((route) => {
+      router.addRoute(route)
+    })
+
+    // 5.添加布局路由的子路由
+    if (layoutChildren.length > 0) {
+      const layoutRoute = router.getRoutes().find((r) => r.name === 'layout')
+      if (layoutRoute) {
+        // 先移除原有布局路由
+        router.removeRoute('layout')
+
+        // 重新添加带有子路由的布局路由
+        router.addRoute({
+          ...layoutRoute,
+          children: [...(layoutRoute.children || []), ...layoutChildren],
+        } as RouteRecordRaw)
+      }
+    }
+
+    console.log('更新后的路由表:', router.getRoutes())
   } catch (error) {
-    // 当按钮 || 菜单请求出错时，重定向到登陆页
     authStore.setToken('')
-    router.replace(import.meta.env.LOGIN_URL)
+    await router.replace(globalConfig.LOGIN_URL)
     return Promise.reject(error)
   }
 }

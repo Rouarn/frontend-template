@@ -18,6 +18,7 @@ export function fetchLogin(userName: string, password: string) {
     },
   })
 }
+
 // 获取菜单列表
 export const getAuthMenuListApi = () => {
   // return http.get<App.Menu.MenuOptions[]>(PORT1 + `/menu/list`, {}, { loading: false })

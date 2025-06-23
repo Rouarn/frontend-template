@@ -41,6 +41,8 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
 
+  console.log('路由拦截', to, from)
+
   // 1.NProgress 开始
   window.NProgress?.start?.()
 
@@ -52,20 +54,18 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta.isConstant) return next()
 
   // 4.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
-  if (to.path.toLocaleLowerCase() === globalConfig.HOME_URL) {
+  if (to.path.toLocaleLowerCase() === globalConfig.LOGIN_URL) {
+    console.log('访问登陆页')
     if (authStore.token) return next(from.fullPath)
     resetRouter()
     return next()
   }
 
-  // 5.判断是否有 Token，没有重定向到 login 页面
-  if (!authStore.token)
-    return next({ path: globalConfig.LOGIN_URL, replace: true, query: { redirect: to.fullPath } })
-
   // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuListGet.length) {
+    console.log('没有菜单列表，重新获取菜单列表')
     await initDynamicRouter()
-    return next({ ...to, replace: true })
+    return next({ ...to, replace: true });
   }
 
   // 8.正常访问页面

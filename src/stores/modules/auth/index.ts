@@ -44,9 +44,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     const needRedirect = route.query?.redirect as string
 
     if (needRedirect && redirect) {
-      router.push(needRedirect)
+      await router.push(needRedirect)
     } else {
-      router.push('/')
+      await router.push('/')
     }
   }
 

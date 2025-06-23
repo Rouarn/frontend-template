@@ -1,5 +1,5 @@
 import { globalConfig } from '@/enum'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 /**
  * staticRouter (静态路由)
@@ -9,31 +9,22 @@ export const staticRouter: RouteRecordRaw[] = [
     path: '/',
     redirect: globalConfig.HOME_URL,
   },
-  // {
-  //   path: globalConfig.LOGIN_URL,
-  //   name: 'login',
-  //   component: () => import('@/views/login/index.vue'),
-  //   meta: {
-  //     title: '登录',
-  //     isConstant: true,
-  //   },
-  // },
   {
-    path: globalConfig.HOME_URL,
-    name: 'home',
-    component: () => import('@/views/HomeView.vue'),
+    path: globalConfig.LOGIN_URL,
+    name: 'login',
+    component: () => import('@/views/login/index.vue'),
     meta: {
-      title: 'layout',
+      title: '登录',
+      isConstant: true,
     },
   },
-  // {
-  //   path: '/layout',
-  //   name: 'layout',
-  //   component: () => import('@/layouts/index.vue'),
-  //   // component: () => import("@/layouts/indexAsync.vue"),
-  //   redirect: globalConfig.HOME_URL,
-  //   children: [],
-  // },
+  {
+    path: '/layout',
+    name: 'layout',
+    component: () => import('@/layouts/blank-layout/index.vue'),
+    redirect: globalConfig.HOME_URL,
+    children: [], // 明确初始化为空数组
+  },
 ]
 
 /**
