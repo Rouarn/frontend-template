@@ -33,7 +33,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   const getAuthMenuList = async () => {
     const { data } = await getAuthMenuListApi()
-    login('soybean', '123456')
+    login('xiaji', '123456')
     menuList.value = data
   }
 
@@ -54,6 +54,12 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     } else {
       await router.push('/')
     }
+
+    window.$notification?.success({
+      title: '登录成功',
+      content: '欢迎回来：' + userInfo.userName,
+      duration: 4500,
+    })
   }
 
   return {

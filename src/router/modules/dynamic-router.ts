@@ -66,8 +66,6 @@ export const initDynamicRouter = async () => {
         } as RouteRecordRaw)
       }
     }
-
-    console.log('更新后的路由表:', router.getRoutes())
   } catch (error) {
     authStore.setToken('')
     await router.replace(GlobalConfig.LOGIN_URL)

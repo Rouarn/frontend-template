@@ -11,7 +11,6 @@ declare namespace Env {
   type RouterHistoryMode = 'hash' | 'history' | 'memory'
 
   /** Interface for import.meta */
-
   interface ImportMeta extends ImportMetaEnv {
     /** The base url of the application */
     readonly VITE_BASE_URL: string
@@ -20,11 +19,11 @@ declare namespace Env {
     /** The port of the application */
     readonly VITE_PORT: number
     /** Whether to open the application in the browser */
-    readonly VITE_OPEN: string
+    readonly VITE_OPEN: CommonType.YesOrNo
     /** Whether to use https */
     readonly VITE_PROXY: string
     /** The mode of the application */
-    readonly VITE_ROUTER_MODE: 'history' | 'hash'
+    readonly VITE_ROUTER_MODE: RouterHistoryMode
     /** The public path of the application */
     readonly VITE_PUBLIC_PATH: string
     /** Whether to enable the Vue DevTools */

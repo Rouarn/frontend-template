@@ -7,11 +7,11 @@ import { addColorAlpha, getPaletteColorByNumber } from '@sa/color'
 export function initThemeSettings() {
   const isProd = import.meta.env.PROD
 
-  // if it is development mode, the theme settings will not be cached, by update `themeSettings` in `src/theme/settings.ts` to update theme settings
+  //如果是开发模式，主题设置将不会被缓存，通过更新‘ src/theme/settings ’中的‘ themessettings ’。这是更新主题设置
   if (!isProd) return themeSettings
 
-  // if it is production mode, the theme settings will be cached in localStorage
-  // if want to update theme settings when publish new version, please update `overrideThemeSettings` in `src/theme/settings.ts`
+  //如果是生产模式，主题设置将缓存在localStorage中
+  //如果想在发布新版本时更新主题设置，请更新src/theme/settings.ts中的overridethemessettings
 
   const localSettings = window.localStorage.getItem('themeSettings')
 
@@ -22,7 +22,7 @@ export function initThemeSettings() {
   if (!isOverride) {
     settings = defu(overrideThemeSettings, settings)
 
-    window.localStorage.getItem('overrideThemeFlag')
+    window.localStorage.setItem('overrideThemeFlag', BUILD_TIME)
   }
 
   return settings

@@ -1,11 +1,13 @@
 import type { Ref } from 'vue'
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, watch, effectScope, onScopeDispose } from 'vue'
 import { SetupStoreId } from '@/enum'
 import { usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { getNaiveTheme, initThemeSettings } from './shared'
+import { toggleHtmlClass } from '@/utils/common'
 
 export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
+  const scope = effectScope()
   const osTheme = usePreferredColorScheme()
 
   /** Theme settings */
@@ -18,6 +20,28 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     }
     return settings.value.themeScheme === 'dark'
   })
+
+  /**
+   * Set theme scheme
+   *
+   * @param themeScheme
+   */
+  function setThemeScheme(themeScheme: UnionKey.ThemeScheme) {
+    settings.value.themeScheme = themeScheme
+  }
+
+  /** Toggle theme scheme */
+  function toggleThemeScheme() {
+    const themeSchemes: UnionKey.ThemeScheme[] = ['light', 'dark', 'auto']
+
+    const index = themeSchemes.findIndex((item) => item === settings.value.themeScheme)
+
+    const nextIndex = index === themeSchemes.length - 1 ? 0 : index + 1
+
+    const nextThemeScheme = themeSchemes[nextIndex]
+
+    setThemeScheme(nextThemeScheme)
+  }
 
   /** Theme colors */
   const themeColors = computed(() => {
@@ -33,19 +57,54 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
   /** Naive theme */
   const naiveTheme = computed(() => getNaiveTheme(themeColors.value))
 
-  // themeColors change, update css vars and storage theme color
-  watch(
-    themeColors,
-    (val) => {
-      window.localStorage.setItem('themeColor', val.primary)
-    },
-    { immediate: true },
-  )
+  /**
+   * Toggle css dark mode
+   *
+   * @param darkMode Is dark mode
+   */
+  function toggleCssDarkMode(darkMode = false) {
+    const { add, remove } = toggleHtmlClass('dark')
+
+    if (darkMode) {
+      add()
+    } else {
+      remove()
+    }
+  }
+
+  // watch store
+  scope.run(() => {
+    // watch dark mode
+    watch(
+      darkMode,
+      (val) => {
+        toggleCssDarkMode(val)
+        window.localStorage.setItem('darkMode', String(val))
+      },
+      { immediate: true },
+    )
+
+    // themeColors change, update css vars and storage theme color
+    watch(
+      themeColors,
+      (val) => {
+        window.localStorage.setItem('themeColor', val.primary)
+      },
+      { immediate: true },
+    )
+  })
+
+  /** On scope dispose */
+  onScopeDispose(() => {
+    scope.stop()
+  })
 
   return {
     ...toRefs(settings.value),
     darkMode,
     themeColors,
     naiveTheme,
+    setThemeScheme,
+    toggleThemeScheme,
   }
 })
