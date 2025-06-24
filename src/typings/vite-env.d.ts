@@ -13,6 +13,7 @@ declare namespace Env {
   /** Interface for import.meta */
   interface ImportMeta extends ImportMetaEnv {
     /** The base url of the application */
+    /** The public path of the application */
     readonly VITE_BASE_URL: string
     /** The title of the application */
     readonly VITE_APP_TITLE: string
@@ -24,8 +25,6 @@ declare namespace Env {
     readonly VITE_PROXY: string
     /** The mode of the application */
     readonly VITE_ROUTER_MODE: RouterHistoryMode
-    /** The public path of the application */
-    readonly VITE_PUBLIC_PATH: string
     /** Whether to enable the Vue DevTools */
     readonly VITE_DEVTOOLS_LAUNCH_EDITOR: VitePluginVueDevToolsOptions['launchEditor']
     /** Whether to automatically detect updates */

@@ -14,7 +14,7 @@ export default defineConfig((configEnv) => {
   const enableProxy = configEnv.command === 'serve' && !configEnv.isPreview
 
   return {
-    base: viteEnv.VITE_PUBLIC_PATH,
+    base: viteEnv.VITE_BASE_URL,
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
