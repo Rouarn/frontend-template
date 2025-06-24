@@ -32,6 +32,7 @@ export default defineConfigWithVueTs(
           ignores: [],
         },
       ],
+      // 变量未使用 _ 开头
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -42,6 +43,15 @@ export default defineConfigWithVueTs(
           destructuredArrayIgnorePattern: '^_',
           varsIgnorePattern: '^_',
           ignoreRestSiblings: true,
+        },
+      ],
+      // 只允许使用 type 关键字导入类型
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          disallowTypeAnnotations: false,
+          fixStyle: 'separate-type-imports',
         },
       ],
     },
