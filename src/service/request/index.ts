@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
+import axios from 'axios'
 import { GlobalConfig, ResultEnum } from '@/enum'
 import { checkStatus } from './checkStatus'
 import { AxiosCanceler } from './axiosCancel'

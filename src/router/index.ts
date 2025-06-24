@@ -4,7 +4,7 @@ import { initDynamicRouter } from '@/router/modules/dynamic-router'
 import { staticRouter, errorRouter } from '@/router/modules/static-router'
 import { GlobalConfig } from '@/enum'
 
-const mode = import.meta.env.VITE_ROUTER_MODE
+const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
 
 const routerMode = {
   hash: () => createWebHashHistory(),

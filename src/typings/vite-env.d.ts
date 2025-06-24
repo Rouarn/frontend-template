@@ -1,4 +1,5 @@
-import { VitePluginVueDevToolsOptions } from 'vite-plugin-vue-devtools'
+import type { ImportGlobFunction } from 'vite'
+import type { VitePluginVueDevToolsOptions } from 'vite-plugin-vue-devtools'
 
 /**
  * Namespace Env
@@ -33,5 +34,5 @@ declare namespace Env {
 
 interface ImportMeta {
   readonly env: Env.ImportMeta
-  glob: (arg: string) => Record<string, unknown>
+  glob: ImportGlobFunction
 }

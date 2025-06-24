@@ -1,4 +1,5 @@
-import { computed, Ref, ref, toRefs, watch } from 'vue'
+import type { Ref } from 'vue'
+import { computed, ref, toRefs, watch } from 'vue'
 import { SetupStoreId } from '@/enum'
 import { usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
