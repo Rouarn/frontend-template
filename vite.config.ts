@@ -43,11 +43,15 @@ export default defineConfig((configEnv) => {
     preview: {
       port: 9725,
     },
+    esbuild: {
+      pure: [...(viteEnv.VITE_DROP_CONSOLE === 'Y' ? ['console.log'] : [])], // 只删除 console.log
+      drop: ['debugger' /** 'console' */], // 删除 所有的console 和 debugger
+    },
     build: {
       outDir: 'dist',
       minify: 'esbuild',
       // esbuild 打包更快，但是不能去除 console.log，terser打包慢，但能去除 console.log
-      // minify: "terser", // 需自行安装 terser
+      // minify: "terser", // 需自行安装 terser, 并注释 esbuild 相关配置
       // terserOptions: {
       // 	compress: {
       // 		drop_console: viteEnv.VITE_DROP_CONSOLE === 'Y',
