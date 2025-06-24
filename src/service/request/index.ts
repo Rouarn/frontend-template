@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 import { GlobalConfig, ResultEnum } from '@/enum'
@@ -112,7 +113,6 @@ class RequestHttp {
   put<T>(url: string, params?: object, _object = {}): Promise<App.Service.Response<T>> {
     return this.service.put(url, params, _object)
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   delete<T>(url: string, params?: any, _object = {}): Promise<App.Service.Response<T>> {
     return this.service.delete(url, { params, ..._object })
   }
