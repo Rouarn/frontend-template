@@ -28,6 +28,8 @@ declare namespace Env {
     readonly VITE_PUBLIC_PATH: string
     /** Whether to enable the Vue DevTools */
     readonly VITE_DEVTOOLS_LAUNCH_EDITOR: VitePluginVueDevToolsOptions['launchEditor']
+    /** Whether to automatically detect updates */
+    VITE_AUTOMATICALLY_DETECT_UPDATE: CommonType.YesOrNo
   }
 }
 
