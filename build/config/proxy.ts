@@ -1,13 +1,14 @@
 import type { ProxyOptions } from 'vite'
 import { bgRed, bgYellow, green, lightBlue } from 'kolorist'
 import { consola } from 'consola'
+import { Env } from '@/typings/vite-env'
 
 type ProxyTargetList = Record<string, ProxyOptions>
 
 /**
  * 创建代理，用于解析 .env.development 代理配置
- * @param viteEnv
- * @param enable
+ * @param viteEnv  环境变量
+ * @param enable   是否开启代理
  */
 export function createViteProxy(viteEnv: Env.ImportMeta, enable: boolean) {
   const isEnableHttpProxy = enable && viteEnv.VITE_HTTP_PROXY === 'Y'
