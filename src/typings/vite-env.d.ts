@@ -29,7 +29,7 @@ declare namespace Env {
     /** Whether to enable the Vue DevTools */
     readonly VITE_DEVTOOLS_LAUNCH_EDITOR: VitePluginVueDevToolsOptions['launchEditor']
     /** Whether to automatically detect updates */
-    VITE_AUTOMATICALLY_DETECT_UPDATE: CommonType.YesOrNo
+    readonly VITE_AUTOMATICALLY_DETECT_UPDATE: CommonType.YesOrNo
   }
 }
 
