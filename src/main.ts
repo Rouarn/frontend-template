@@ -4,7 +4,7 @@ import { setupStore } from './stores'
 import App from './App.vue'
 import router from './router'
 import { setupI18n } from './locales'
-import { setupDayjs, setupLoading, setupNProgress } from './plugins'
+import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress } from './plugins'
 
 function setupApp() {
   setupLoading()
@@ -20,6 +20,8 @@ function setupApp() {
   setupI18n(app)
 
   app.use(router)
+
+  setupAppVersionNotification()
 
   app.mount('#app')
 }

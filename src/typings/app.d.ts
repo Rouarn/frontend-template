@@ -93,6 +93,10 @@ declare namespace App {
     type Schema = {
       system: {
         title: 'XiaJI'
+        updateTitle: string
+        updateContent: string
+        updateConfirm: string
+        updateCancel: string
       }
     }
 

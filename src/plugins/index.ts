@@ -1,3 +1,4 @@
 export * from './dayjs'
 export * from './nprogress'
 export * from './loading'
+export * from './app'
