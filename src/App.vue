@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { useThemeStore } from './stores/modules/theme'
-import { useAppStore } from './stores/modules/app'
 import { darkTheme } from 'naive-ui'
+import { computed } from 'vue'
+import { RouterView } from 'vue-router'
 import { naiveDateLocales, naiveLocales } from './locales/naive'
+import { useAppStore } from './stores/modules/app'
+import { useThemeStore } from './stores/modules/theme'
 
 defineOptions({
   name: 'App',

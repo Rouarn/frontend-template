@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosInstance, AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
-import axios from 'axios'
 import { GlobalConfig, ResultEnum } from '@/enum'
-import { checkStatus } from './checkStatus'
-import { AxiosCanceler } from './axiosCancel'
-import { useAuthStore } from '@/stores/modules/auth'
 import router from '@/router'
+import { useAuthStore } from '@/stores/modules/auth'
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import axios from 'axios'
+import { AxiosCanceler } from './axiosCancel'
+import { checkStatus } from './checkStatus'
 
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   loading?: boolean

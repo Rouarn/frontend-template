@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import { SetupStoreId } from '@/enum'
+import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
 import { getCacheRouteNames } from './shared'
 

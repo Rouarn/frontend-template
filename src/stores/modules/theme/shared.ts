@@ -1,7 +1,7 @@
 import { overrideThemeSettings, themeSettings } from '@/theme/settings'
+import { addColorAlpha, getPaletteColorByNumber } from '@sa/color'
 import { defu } from 'defu'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import { addColorAlpha, getPaletteColorByNumber } from '@sa/color'
 
 /** Init theme settings */
 export function initThemeSettings() {

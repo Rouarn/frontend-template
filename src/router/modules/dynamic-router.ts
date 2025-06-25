@@ -1,7 +1,7 @@
-import router from '@/router/index'
-import type { RouteRecordRaw } from 'vue-router'
-import { useAuthStore } from '@/stores/modules/auth'
 import { GlobalConfig } from '@/enum'
+import router from '@/router/index'
+import { useAuthStore } from '@/stores/modules/auth'
+import type { RouteRecordRaw } from 'vue-router'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')

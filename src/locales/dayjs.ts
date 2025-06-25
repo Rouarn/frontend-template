@@ -1,6 +1,6 @@
 import { locale } from 'dayjs'
-import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
+import 'dayjs/locale/zh-cn'
 
 /**
  * Set dayjs locale

@@ -22,6 +22,6 @@ setTimeout(() => {
 
     <IconMdiArrowDownThin class="operate-shadow operate-item" />
 
-    <IconUilSearch class="text-15px text-#c2c2c2" />
+    <IconUilSearch class="text-15px text-#c2c2c2 max-2xl h-3" />
   </NSpace>
 </template>

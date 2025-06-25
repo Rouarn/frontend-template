@@ -2,5 +2,9 @@
   "$schema": "https://json.schemastore.org/prettierrc",
   "semi": false,
   "singleQuote": true,
-  "printWidth": 140
+  "printWidth": 140,
+  "plugins": ["prettier-plugin-organize-imports"],
+  "importOrder": ["^vue$", "^vue-router$", "^@vueuse/core$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

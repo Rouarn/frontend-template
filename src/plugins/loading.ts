@@ -1,4 +1,4 @@
-import { render, h, ref } from 'vue'
+import { h, ref, render } from 'vue'
 
 export interface LoadingProviderInst {
   open: () => void

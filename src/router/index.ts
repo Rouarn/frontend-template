@@ -1,8 +1,8 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import { useAuthStore } from '@/stores/modules/auth'
-import { initDynamicRouter } from '@/router/modules/dynamic-router'
-import { staticRouter, errorRouter } from '@/router/modules/static-router'
 import { GlobalConfig } from '@/enum'
+import { initDynamicRouter } from '@/router/modules/dynamic-router'
+import { errorRouter, staticRouter } from '@/router/modules/static-router'
+import { useAuthStore } from '@/stores/modules/auth'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
 

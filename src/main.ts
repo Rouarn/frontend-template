@@ -1,8 +1,8 @@
-import './plugins/assets'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { setupI18n } from './locales'
-import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress, setupIconifyOffline } from './plugins'
+import { setupAppVersionNotification, setupDayjs, setupIconifyOffline, setupLoading, setupNProgress } from './plugins'
+import './plugins/assets'
 import router from './router'
 import { setupStore } from './stores'
 

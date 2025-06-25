@@ -1,10 +1,10 @@
-import type { Ref } from 'vue'
-import { computed, ref, toRefs, watch, effectScope, onScopeDispose } from 'vue'
 import { SetupStoreId } from '@/enum'
+import { toggleHtmlClass } from '@/utils/common'
 import { usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
+import type { Ref } from 'vue'
+import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
 import { getNaiveTheme, initThemeSettings } from './shared'
-import { toggleHtmlClass } from '@/utils/common'
 
 export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
   const scope = effectScope()

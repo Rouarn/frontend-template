@@ -1,7 +1,7 @@
-import type { ProxyOptions } from 'vite'
-import { bgRed, bgYellow, green, lightBlue } from 'kolorist'
-import { consola } from 'consola'
 import type { Env } from '@/typings/vite-env'
+import { consola } from 'consola'
+import { bgRed, bgYellow, green, lightBlue } from 'kolorist'
+import type { ProxyOptions } from 'vite'
 
 type ProxyTargetList = Record<string, ProxyOptions>
 
