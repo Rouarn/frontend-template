@@ -9,6 +9,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppProvider: typeof import('./../components/common/app-provider.vue')['default']
+    IconLocalBanner: typeof import('~icons/local/banner')['default']
+    IconMdiArrowDownThin: typeof import('~icons/mdi/arrow-down-thin')['default']
+    IconUilSearch: typeof import('~icons/uil/search')['default']
     NBackTop: typeof import('naive-ui')['NBackTop']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']

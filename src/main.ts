@@ -1,15 +1,17 @@
 import './plugins/assets'
 import { createApp } from 'vue'
-import { setupStore } from './stores'
 import App from './App.vue'
-import router from './router'
 import { setupI18n } from './locales'
-import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress } from './plugins'
+import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress, setupIconifyOffline } from './plugins'
+import router from './router'
+import { setupStore } from './stores'
 
 function setupApp() {
   setupLoading()
 
   setupNProgress()
+
+  setupIconifyOffline()
 
   setupDayjs()
 
