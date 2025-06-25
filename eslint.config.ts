@@ -17,13 +17,14 @@ export default defineConfigWithVueTs(
 
   {
     rules: {
+      // 要求组件名使用多单词（防止与 HTML 原生标签冲突），但允许例外（如 index、App 等）
       'vue/multi-word-component-names': [
         'warn',
         {
           ignores: ['index', 'App', 'Register', '[id]', '[url]'],
         },
       ],
-      // 组件名大驼峰
+      // 强制模板中的组件名使用 PascalCase（大驼峰）命名，除了以 icon- 开头的
       'vue/component-name-in-template-casing': [
         'error',
         'PascalCase',
@@ -32,7 +33,7 @@ export default defineConfigWithVueTs(
           ignores: [],
         },
       ],
-      // 变量未使用 _ 开头
+      // 禁止未使用的变量，但允许以 _ 开头的变量
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -45,7 +46,7 @@ export default defineConfigWithVueTs(
           ignoreRestSiblings: true,
         },
       ],
-      // 只允许使用 type 关键字导入类型
+      // 强制类型导入必须使用 import type 语法
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
