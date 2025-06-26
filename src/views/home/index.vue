@@ -22,11 +22,11 @@ setTimeout(() => {
     <!-- 切换暗色 -->
     <NButton @click="themeStore.toggleThemeScheme()"> 切换深色 </NButton>
 
-    <IconLocalBanner class="w-40 h-40" />
+    <icon-local-banner class="w-40 h-40" />
 
-    <IconMdiArrowDownThin class="operate-shadow operate-item" />
+    <icon-mdi-arrow-down-thin class="operate-shadow operate-item" />
 
-    <IconUilSearch class="text-15px text-#c2c2c2 max-2xl h-3" />
+    <icon-uil-search class="text-15px text-#c2c2c2 max-2xl h-3" />
 
     <NButton @click="router.push('/login')">登录</NButton>
   </NSpace>

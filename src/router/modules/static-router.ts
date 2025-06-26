@@ -21,9 +21,19 @@ export const staticRouter: RouteRecordRaw[] = [
   {
     path: '/layout',
     name: 'layout',
-    component: () => import('@/layouts/blank-layout/index.vue'),
+    component: () => import('@/layouts/base-layout/index.vue'),
     redirect: GlobalConfig.HOME_URL,
-    children: [],
+    children: [
+      {
+        path: GlobalConfig.HOME_URL,
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
+        meta: {
+          title: '首页',
+          isConstant: true,
+        },
+      },
+    ],
   },
 ]
 
