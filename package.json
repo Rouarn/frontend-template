@@ -26,7 +26,6 @@
     "consola": "^3.4.2",
     "dayjs": "^1.11.13",
     "defu": "^6.1.4",
-    "elegant-router": "^1.0.2",
     "klona": "^2.0.6",
     "naive-ui": "^2.42.0",
     "nprogress": "^0.2.0",
