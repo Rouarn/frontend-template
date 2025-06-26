@@ -9,6 +9,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppProvider: typeof import('./../components/common/app-provider.vue')['default']
+    ExceptionBase: typeof import('./../components/common/exception-base.vue')['default']
+    'IconIconParkOutline:arrowDown': typeof import('~icons/icon-park-outline/arrow-down')['default']
     IconLocalBanner: typeof import('~icons/local/banner')['default']
     IconMdiArrowDownThin: typeof import('~icons/mdi/arrow-down-thin')['default']
     IconUilSearch: typeof import('~icons/uil/search')['default']
@@ -22,5 +24,6 @@ declare module 'vue' {
     NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./../components/custom/svg-icon.vue')['default']
   }
 }

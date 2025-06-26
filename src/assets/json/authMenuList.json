@@ -1,5 +1,15 @@
 {
   "code": 200,
-  "data": [],
+  "data": [
+    {
+      "path": "/home",
+      "name": "home",
+      "component": "/home/index",
+      "meta": {
+        "title": "首页",
+        "isConstant": true
+      }
+    }
+  ],
   "msg": "成功"
 }

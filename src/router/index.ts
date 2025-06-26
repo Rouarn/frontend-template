@@ -51,7 +51,10 @@ router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 
   // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
-  await initDynamicRouter()
+  if (!authStore.authMenuListGet.length) {
+    await initDynamicRouter()
+    return next({ ...to, replace: true })
+  }
 
   // 3.判断访问页面是否是常规路由，如果是直接放行
   if (to.meta.isConstant) {

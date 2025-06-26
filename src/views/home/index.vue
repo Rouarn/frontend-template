@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
 import { $t } from '@/locales'
 import { useThemeStore } from '@/stores/modules/theme'
 
 const themeStore = useThemeStore()
+
+const router = useRouter()
 const open = () => {
   window.$loading?.open()
 }
@@ -23,5 +27,7 @@ setTimeout(() => {
     <IconMdiArrowDownThin class="operate-shadow operate-item" />
 
     <IconUilSearch class="text-15px text-#c2c2c2 max-2xl h-3" />
+
+    <NButton @click="router.push('/login')">登录</NButton>
   </NSpace>
 </template>

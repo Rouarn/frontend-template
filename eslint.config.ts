@@ -35,7 +35,7 @@ export default defineConfigWithVueTs(
         'PascalCase',
         {
           registeredComponentsOnly: false,
-          ignores: ['icon-*'],
+          ignores: ['/^icon-/'],
         },
       ],
       // 禁止未使用的变量，但允许以 _ 开头的变量

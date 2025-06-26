@@ -22,51 +22,22 @@ export const initDynamicRouter = async () => {
       window.$message?.error('当前账号无任何菜单权限，请联系系统管理员！')
     }
 
-    // 3.准备要添加的路由
-    const routesToAdd: RouteRecordRaw[] = []
-    const layoutChildren: RouteRecordRaw[] = []
-
+    // 3.添加动态路由
     authStore.flatMenuListGet.forEach((item) => {
-      // 克隆对象避免修改原始数据
-      const route = { ...item } as unknown as RouteRecordRaw
-
-      // 处理子路由
       if (item.children) {
-        delete route.children
+        delete item.children
       }
-
-      // 处理组件路径
-      if (item.component) {
-        route.component = modules['/src/views' + item.component + '.vue'] as () => Promise<unknown>
+      if (item.component && typeof item.component == 'string') {
+        item.component = modules['/src/views' + item.component + '.vue']
       }
-
-      // 分类路由
       if (item.meta.isFull) {
-        routesToAdd.push(route)
+        router.addRoute(item as unknown as RouteRecordRaw)
       } else {
-        layoutChildren.push(route)
+        router.addRoute('layout', item as unknown as RouteRecordRaw)
       }
     })
 
-    // 4.添加全屏路由
-    routesToAdd.forEach((route) => {
-      router.addRoute(route)
-    })
-
-    // 5.添加布局路由的子路由
-    if (layoutChildren.length > 0) {
-      const layoutRoute = router.getRoutes().find((r) => r.name === 'layout')
-      if (layoutRoute) {
-        // 先移除原有布局路由
-        router.removeRoute('layout')
-
-        // 重新添加带有子路由的布局路由
-        router.addRoute({
-          ...layoutRoute,
-          children: [...(layoutRoute.children || []), ...layoutChildren],
-        } as RouteRecordRaw)
-      }
-    }
+    console.log(router.getRoutes(), 'router.getRoutes()')
   } catch (error) {
     authStore.setToken('')
     await router.replace(GlobalConfig.LOGIN_URL)

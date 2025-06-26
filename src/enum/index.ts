@@ -10,7 +10,6 @@ export enum SetupStoreId {
 export enum GlobalConfig {
   HOME_URL = '/home',
   LOGIN_URL = '/login',
-  ROUTER_WHITE_LIST = '/500,/404',
 }
 
 /**
