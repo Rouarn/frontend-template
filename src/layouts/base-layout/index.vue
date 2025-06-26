@@ -7,18 +7,18 @@ defineOptions({
   name: 'BaseLayout',
 })
 
-const handleBackTop = (item: boolean) => {
-  window.$message?.success(item ? '返回顶部' : '取消返回顶部')
+const handleBackTop = (isTop: boolean) => {
+  window.$message?.success(isTop ? '返回顶部' : '取消返回顶部')
 }
 </script>
 
 <template>
-  <div>
+  <NFlex vertical class="size-full" :size="0">
     <GlobalHeader />
     <GlobalContent />
     <GlobalFooter />
     <NBackTop :right="100" class="z-3" @update:show="handleBackTop" />
-  </div>
+  </NFlex>
 </template>
 
 <style scoped></style>
