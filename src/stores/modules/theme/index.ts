@@ -2,7 +2,7 @@ import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
 
 import { toggleHtmlClass } from '@/utils/common'
 
-import { getNaiveTheme, initThemeSettings } from './shared'
+import { addThemeVarsToGlobal, createThemeToken, getNaiveTheme, initThemeSettings } from './shared'
 import { SetupStoreId } from '@/enum'
 import { usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
@@ -74,6 +74,12 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     }
   }
 
+  /** Setup theme vars to global */
+  function setupThemeVarsToGlobal() {
+    const { themeTokens, darkThemeTokens } = createThemeToken(themeColors.value, settings.value.tokens)
+    addThemeVarsToGlobal(themeTokens, darkThemeTokens)
+  }
+
   // watch store
   scope.run(() => {
     // watch dark mode
@@ -90,6 +96,7 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     watch(
       themeColors,
       (val) => {
+        setupThemeVarsToGlobal()
         window.localStorage.setItem('themeColor', val.primary)
       },
       { immediate: true },

@@ -21,6 +21,14 @@ declare namespace App {
       otherColor: OtherColor
       /** Whether the info color is followed by the primary color */
       isInfoFollowPrimary: boolean
+
+      /** define some theme settings tokens, will transform to css variables */
+      tokens: {
+        light: ThemeSettingToken
+        dark?: {
+          [K in keyof ThemeSettingToken]?: Partial<ThemeSettingToken[K]>
+        }
+      }
     }
 
     interface ThemeColor extends OtherColor {
@@ -33,6 +41,8 @@ declare namespace App {
       [key in ThemeColorKey | `${ThemeColorKey}-${ColorPaletteNumber}`]: string
     }
 
+    type BaseToken = Record<string, Record<string, string>>
+
     interface ThemeSettingTokenColor {
       /** the progress bar color, if not set, will use the primary color */
       nprogress?: string
@@ -44,9 +54,21 @@ declare namespace App {
 
     type ThemeTokenColor = ThemePaletteColor & ThemeSettingTokenColor
 
+    interface ThemeSettingTokenBoxShadow {
+      header: string
+      sider: string
+      tab: string
+    }
+
+    interface ThemeSettingToken {
+      colors: ThemeSettingTokenColor
+      boxShadow: ThemeSettingTokenBoxShadow
+    }
+
     /** Theme token CSS variables */
     type ThemeTokenCSSVars = {
       colors: ThemeTokenColor & { [key: string]: string }
+      boxShadow: ThemeSettingTokenBoxShadow & { [key: string]: string }
     }
   }
 
