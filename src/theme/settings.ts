@@ -9,7 +9,6 @@ export const themeSettings: App.Theme.ThemeSetting = {
     error: '#f5222d',
   },
   isInfoFollowPrimary: true,
-  recommendColor: true,
 }
 
 /**

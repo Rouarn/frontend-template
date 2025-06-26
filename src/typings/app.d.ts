@@ -19,10 +19,8 @@ declare namespace App {
       themeColor: string
       /** Other color */
       otherColor: OtherColor
-      /** Recommend color */
+      /** Whether the info color is followed by the primary color */
       isInfoFollowPrimary: boolean
-      /** Whether to recommend color */
-      recommendColor: boolean
     }
 
     interface ThemeColor extends OtherColor {
