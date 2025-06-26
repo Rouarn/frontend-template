@@ -1,7 +1,7 @@
+import { getCacheRouteNames } from './shared'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
-import { getCacheRouteNames } from './shared'
 
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   /** Cache routes */

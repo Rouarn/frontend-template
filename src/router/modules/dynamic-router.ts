@@ -1,5 +1,6 @@
-import { GlobalConfig } from '@/enum'
 import router from '@/router/index'
+
+import { GlobalConfig } from '@/enum'
 import { useAuthStore } from '@/stores/modules/auth'
 import type { RouteRecordRaw } from 'vue-router'
 

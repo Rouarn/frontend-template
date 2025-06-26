@@ -1,6 +1,6 @@
+import messages from './locale'
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
-import messages from './locale'
 
 const i18n = createI18n({
   locale: window.localStorage.getItem('lang') || 'zh-CN',

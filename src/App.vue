@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { darkTheme } from 'naive-ui'
 import { computed } from 'vue'
 import { RouterView } from 'vue-router'
+import { darkTheme } from 'naive-ui'
+
 import { naiveDateLocales, naiveLocales } from './locales/naive'
 import { useAppStore } from './stores/modules/app'
 import { useThemeStore } from './stores/modules/theme'

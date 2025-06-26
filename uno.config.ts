@@ -1,5 +1,5 @@
-import { defineConfig, presetWind3, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { themeVars } from './src/theme/vars'
+import { defineConfig, presetWind3, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   content: {

@@ -1,20 +1,25 @@
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
+import { globalIgnores } from 'eslint/config'
+import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort'
+import pluginVue from 'eslint-plugin-vue'
 
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],
   },
-
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
 
+  {
+    plugins: {
+      'simple-import-sort': eslintPluginSimpleImportSort,
+    },
+  },
   {
     rules: {
       // 要求组件名使用多单词（防止与 HTML 原生标签冲突），但允许例外（如 index、App 等）
@@ -30,7 +35,7 @@ export default defineConfigWithVueTs(
         'PascalCase',
         {
           registeredComponentsOnly: false,
-          ignores: [],
+          ignores: ['icon-*'],
         },
       ],
       // 禁止未使用的变量，但允许以 _ 开头的变量
@@ -53,6 +58,27 @@ export default defineConfigWithVueTs(
           prefer: 'type-imports',
           disallowTypeAnnotations: false,
           fixStyle: 'separate-type-imports',
+        },
+      ],
+
+      // 强制 import 排序
+      'simple-import-sort/exports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            [`^vue$`, `^vue-router$`, `^naive-ui$`],
+            [`.*\\.vue$`], // .vue 文件
+            [`.*/assets/.*`, `^@/assets$`],
+            [`.*/hooks/.*`, `^@/hooks$`],
+            [`.*/plugins/.*`, `^@/plugins$`],
+            [`.*/router/.*`, `^@/router$`],
+            [`^@/services$`, `^@/services/.*`],
+            [`.*/store/.*`, `^@/stores$`],
+            [`.*/utils/.*`, `^@/utils$`],
+            [`^`],
+            [`^type `],
+          ],
         },
       ],
     },

@@ -1,8 +1,9 @@
+import { useRoute, useRouter } from 'vue-router'
+
+import { getFlatMenuList, getShowMenuList } from './shared'
 import { SetupStoreId } from '@/enum'
 import { fetchLogin, getAuthMenuListApi } from '@/service/api/login'
 import { defineStore } from 'pinia'
-import { useRoute, useRouter } from 'vue-router'
-import { getFlatMenuList, getShowMenuList } from './shared'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const router = useRouter()

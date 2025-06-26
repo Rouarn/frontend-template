@@ -1,5 +1,9 @@
-import path from 'path'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
+
+import type { Env } from '@/typings/vite-env'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
 import { presetIcons } from 'unocss'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -11,13 +15,11 @@ import type { PluginOption } from 'vite'
 import progress from 'vite-plugin-progress'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import type { Env } from '@/typings/vite-env'
 
 export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
   const { VITE_ICON_PREFIX, VITE_ICON_LOCAL_PREFIX, VITE_DEVTOOLS_LAUNCH_EDITOR } = viteEnv
 
+  /** The path of the local icon directory */
   const localIconPath = path.join(process.cwd(), 'src/assets/svg-icon')
 
   /** The name of the local icon collection */
