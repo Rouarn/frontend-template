@@ -34,7 +34,6 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   const getAuthMenuList = async () => {
     const { data } = await getAuthMenuListApi()
-    login('xiaji', '123456')
     menuList.value = data
   }
 

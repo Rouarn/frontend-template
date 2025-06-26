@@ -7,7 +7,12 @@
       "component": "/home/index",
       "meta": {
         "title": "首页",
-        "isConstant": true
+        "isConstant": true,
+        "icon": "icon-home",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": true
       }
     }
   ],
