@@ -30,6 +30,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   const setToken = (value: string) => {
     token.value = value
+    window.localStorage.setItem('token', value)
   }
 
   const getAuthMenuList = async () => {
