@@ -1,4 +1,7 @@
 const local: App.I18n.Schema = {
+  common: {
+    backToHome: 'Back to home',
+  },
   system: {
     title: 'XiaJI',
     updateTitle: 'System Version Update Notification',

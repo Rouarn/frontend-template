@@ -91,6 +91,9 @@ declare namespace App {
     }
 
     type Schema = {
+      common: {
+        backToHome: string
+      }
       system: {
         title: 'XiaJI'
         updateTitle: string

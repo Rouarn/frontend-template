@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-
-import { useRouter } from '@/router'
+import { useRouter } from 'vue-router'
 
 import { $t } from '@/locales'
 

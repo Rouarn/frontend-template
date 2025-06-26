@@ -1,4 +1,7 @@
 const local: App.I18n.Schema = {
+  common: {
+    backToHome: '返回首页',
+  },
   system: {
     title: 'XiaJI',
     updateTitle: '系统版本更新通知',
