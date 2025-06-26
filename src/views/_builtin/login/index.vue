@@ -68,99 +68,110 @@ async function handleLogin() {
   align-items: center;
   background: linear-gradient(to top left, #ffe29f, #ffa99f, #ff719a);
   overflow: hidden;
-}
-.container {
-  text-align: center;
-  color: #fff;
-}
-.container h1 {
-  font-size: 40px;
-  font-weight: 100;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  /* 过渡效果 */
-  transition: 1s ease-in-out;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  opacity: 1;
-  /* 不透明度改变时的过渡效果 */
-  transition: opacity 0.5s;
-}
-.form input {
-  outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.2);
-  width: 250px;
-  padding: 10px 15px;
-  border-radius: 3px;
-  margin: 0 auto 10px auto;
-  text-align: center;
-  color: #fff;
-  font-size: 15px;
-  transition: 0.25s;
-}
-.form input::placeholder {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 300;
-}
-.form input:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-.form input:focus {
-  background-color: #fff;
-  width: 300px;
-  color: #ff719a;
-}
-.btn-login {
-  outline: none;
-  background-color: #fff;
-  color: #ff719a;
-  border: none;
-  width: 250px;
-  padding: 10px 15px;
-  border-radius: 3px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.btn-login:hover {
-  background-color: #f5f7f9;
-}
 
-.bgBlock {
-  animation-name: square;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  @for $i from 1 through 10 {
-    &:nth-child(#{$i}) {
-      animation-duration: $i * 3s;
-      animation-delay: if($i == 1, 0s, ($i - 1) * 3s);
+  .container {
+    text-align: center;
+    color: #fff;
+
+    & > h1 {
+      font-size: 40px;
+      font-weight: 100;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      /* 过渡效果 */
+      transition: 1s ease-in-out;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      opacity: 1;
+      /* 不透明度改变时的过渡效果 */
+      transition: opacity 0.5s;
+
+      input {
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.2);
+        width: 250px;
+        padding: 10px 15px;
+        border-radius: 3px;
+        margin: 0 auto 10px auto;
+        text-align: center;
+        color: #fff;
+        font-size: 15px;
+        transition: 0.25s;
+
+        &::placeholder {
+          color: #fff;
+          font-size: 14px;
+          font-weight: 300;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        &:focus {
+          background-color: #fff;
+          width: 300px;
+          color: #ff719a;
+        }
+      }
+
+      .btn-login {
+        outline: none;
+        background-color: #fff;
+        color: #ff719a;
+        border: none;
+        width: 250px;
+        padding: 10px 15px;
+        border-radius: 3px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.25s;
+
+        &:hover {
+          background-color: #f5f7f9;
+        }
+      }
+    }
+
+    &.success {
+      h1 {
+        transform: translateY(75px);
+      }
+
+      .form {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
   }
-}
 
-/* 定义动画 */
-@keyframes square {
-  0% {
-    transform: translateY(0);
+  .bgBlock {
+    animation-name: square;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-duration: $i * 3s;
+        animation-delay: if($i == 1, 0s, ($i - 1) * 3s);
+      }
+    }
   }
-  100% {
-    transform: translateY(-100vh) rotate(600deg);
+
+  @keyframes square {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100vh) rotate(600deg);
+    }
   }
-}
-
-.success h1 {
-  transform: translateY(75px);
-}
-
-.success .n-form {
-  opacity: 0;
-  visibility: hidden;
 }
 </style>
