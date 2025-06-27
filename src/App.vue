@@ -3,9 +3,10 @@ import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import { darkTheme } from 'naive-ui'
 
-import { naiveDateLocales, naiveLocales } from './locales/naive'
 import { useAppStore } from './stores/modules/app'
 import { useThemeStore } from './stores/modules/theme'
+
+import { naiveDateLocales, naiveLocales } from './locales/naive'
 
 defineOptions({
   name: 'App',

@@ -31,7 +31,7 @@ async function handleLogin() {
     <div class="container" :class="{ success: isSuccess }">
       <NH1 class="text-unset">Welcome</NH1>
       <form class="form" @submit.prevent="handleLogin">
-        <input type="text" placeholder="您的账号" v-model="userName" />
+        <input type="text" placeholder="您的账号" v-model="userName" autofocus />
         <input type="password" placeholder="您的密码" v-model="password" />
         <button class="btn-login" type="submit">登录</button>
       </form>
