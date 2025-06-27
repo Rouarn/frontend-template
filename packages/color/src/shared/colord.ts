@@ -1,7 +1,6 @@
 import labPlugin from 'colord/plugins/lab'
 import mixPlugin from 'colord/plugins/mix'
 import namesPlugin from 'colord/plugins/names'
-
 import type { AnyColor, HslColor, RgbColor } from 'colord'
 import { colord, extend } from 'colord'
 

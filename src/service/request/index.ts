@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import router from '@/router'
-
 import { useAuthStore } from '@/stores/modules/auth'
-
 import { AxiosCanceler } from './axiosCancel'
 import { checkStatus } from './checkStatus'
 import { GlobalConfig, ResultEnum } from '@/enum'

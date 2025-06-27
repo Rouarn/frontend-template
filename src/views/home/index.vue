@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-
 import { useThemeStore } from '@/stores/modules/theme'
-
 import { $t } from '@/locales'
 
 const themeStore = useThemeStore()

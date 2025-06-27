@@ -1,7 +1,5 @@
 import router from '@/router/index'
-
 import { useAuthStore } from '@/stores/modules/auth'
-
 import { GlobalConfig } from '@/enum'
 import type { RouteRecordRaw } from 'vue-router'
 

@@ -1,5 +1,4 @@
 import useBoolean from '@/utils/use-boolean'
-
 import { SetupStoreId } from '@/enum'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { defineStore } from 'pinia'

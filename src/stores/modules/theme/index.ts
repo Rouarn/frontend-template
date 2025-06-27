@@ -1,7 +1,5 @@
 import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
-
 import { toggleHtmlClass } from '@/utils/common'
-
 import { addThemeVarsToGlobal, createThemeToken, getNaiveTheme, initThemeSettings } from './shared'
 import { SetupStoreId } from '@/enum'
 import { usePreferredColorScheme } from '@vueuse/core'

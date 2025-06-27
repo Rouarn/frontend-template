@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
-
 import { Icon } from '@iconify/vue'
 
 defineOptions({ name: 'SvgIcon', inheritAttrs: false })

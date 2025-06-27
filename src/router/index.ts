@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-
 import { errorRouter, staticRouter } from '@/router/modules/static-router'
-
 import { useTitle } from '@vueuse/core'
 
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'

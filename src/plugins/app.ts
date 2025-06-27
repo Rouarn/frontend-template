@@ -1,6 +1,5 @@
 import { h } from 'vue'
 import { NButton } from 'naive-ui'
-
 import { $t } from '@/locales'
 import type { App } from 'vue'
 

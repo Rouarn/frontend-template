@@ -1,7 +1,5 @@
 import { useRoute, useRouter } from 'vue-router'
-
 import { fetchLogin, getAuthMenuListApi } from '@/service/api/login'
-
 import { getFlatMenuList, getShowMenuList } from './shared'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'

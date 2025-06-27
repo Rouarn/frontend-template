@@ -1,5 +1,4 @@
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
-
 import type { Env } from '@/typings/vite-env'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
