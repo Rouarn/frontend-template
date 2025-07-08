@@ -23,6 +23,7 @@ const routerMode = {
  * @param meta.isFull ==> 菜单是否全屏 (示例：数据大屏页面)
  * @param meta.isKeepAlive ==> 当前路由是否缓存
  * @param meta.isConstant ==> 常规路由 (不需要权限 直接放行)
+ * @param meta.isConstant ==> 常规路由 (不需要权限 直接放行)
  * */
 const router = createRouter({
   history: routerMode[mode](),
