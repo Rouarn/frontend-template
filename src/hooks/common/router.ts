@@ -71,7 +71,7 @@ export function useRouterPush(inSetup = true) {
       redirect,
     }
 
-    return routerPushByKey(GlobalConfig.LOGIN_URL, options)
+    return routerPushByKey(GlobalConfig.LOGIN_URL as RouteKey, options)
   }
 
   /**

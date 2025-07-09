@@ -8,7 +8,6 @@ import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
 
 const layoutRoutes = setupLayouts(routes)
-console.log('layoutRoutes: ', layoutRoutes)
 
 const routerMode = {
   hash: () => createWebHashHistory(),
@@ -62,8 +61,6 @@ router.beforeEach(async (to, _from, next) => {
   const subTitle = i18nKey ? $t(i18nKey) : (title ?? '')
   const documentTitle = subTitle ? `${subTitle} - ${AppTitle}` : AppTitle
   useTitle(documentTitle)
-
-  console.log(router.getRoutes(), 'router.getRoutes()')
 
   // 7.正常访问页面
   next()
