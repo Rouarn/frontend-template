@@ -74,27 +74,14 @@ declare namespace App {
 
   /** Global namespace */
   namespace Global {
-    /** The global menu */
-    namespace Menu {
-      interface MenuOptions {
-        path: string
-        name: string
-        component?: string | (() => Promise<unknown>)
-        redirect?: string
-        meta: MetaProps
-        children?: MenuOptions[]
-      }
-      interface MetaProps {
-        icon: string
-        title: string
-        activeMenu?: string
-        isLink?: string
-        isHide: boolean
-        isFull: boolean
-        isAffix: boolean
-        isKeepAlive: boolean
-      }
+    /** The router push options */
+    type RouterPushOptions = {
+      query?: Record<string, string>
+      params?: Record<string, string>
     }
+
+    /** The global menu */
+    namespace Menu {}
   }
 
   /**

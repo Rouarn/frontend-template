@@ -31,7 +31,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
       routesFolder: ['src/views'],
       dts: 'src/typings/typed-router.d.ts',
       extensions: ['.vue', '.tsx'],
-      exclude: ['**/components/*.vue', '**/modules/*.vue'],
+      exclude: ['**/components/*.vue', '**/modules/*.vue', '**/_*/**'],
       routeBlockLang: 'json5',
       importMode: 'async',
     }),
@@ -41,6 +41,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
       layoutsDirs: ['src/layouts'],
       pagesDirs: 'src/views',
       defaultLayout: 'base-layout',
+      exclude: ['**/_builtin/**'],
     }),
     vueDevTools({ launchEditor: VITE_DEVTOOLS_LAUNCH_EDITOR }),
     UnoCSS({

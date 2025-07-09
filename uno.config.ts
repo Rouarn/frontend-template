@@ -1,7 +1,8 @@
 import { themeVars } from './src/theme/vars'
+import type { PresetUnoTheme } from 'unocss'
 import { defineConfig, presetWind3, transformerDirectives, transformerVariantGroup } from 'unocss'
 
-export default defineConfig({
+export default defineConfig<PresetUnoTheme>({
   content: {
     pipeline: {
       exclude: ['node_modules', 'dist'],

@@ -46,6 +46,8 @@ declare module 'vue-router' {
      * 默认情况下，相同的路由路径会共用一个标签页，即使查询参数不同。如果设置为 true，则不同查询参数的路由会使用不同的标签页
      */
     multiTab?: boolean | null
+    /** 如果设置了查询参数，则在输入路由时自动携带 */
+    query?: { key: string; value: string }[] | null
     /**
      * 菜单的布局，可选值有 base-layout 和 blank-layout
      * @default 'base-layout'

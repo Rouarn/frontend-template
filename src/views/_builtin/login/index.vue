@@ -1,3 +1,11 @@
+<route lang="json5">
+{
+  meta: {
+    title: '登录',
+  },
+}
+</route>
+
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/modules/auth'
 

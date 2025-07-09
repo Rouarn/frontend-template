@@ -7,6 +7,9 @@ import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
 
+const layoutRoutes = setupLayouts(routes)
+console.log('layoutRoutes: ', layoutRoutes)
+
 const routerMode = {
   hash: () => createWebHashHistory(),
   history: () => createWebHistory(),
@@ -30,12 +33,13 @@ const routerMode = {
  * @param meta.isAuth ==> 当前路由是否需要登录
  * @param meta.hideInMenu ==> 是否在菜单中隐藏该路由
  * @param meta.multiTab ==> 相同路径不同参数是否使用不同标签页
+ * @param meta.query ==> 路由的查询参数
  * @param meta.layout => 路由布局 可选值有 base-layout 和 blank-layout
  * @default 'base-layout'
  * */
 const router = createRouter({
   history: routerMode[mode](),
-  routes: [...setupLayouts(routes), ...staticRouter, ...errorRouter],
+  routes: [...layoutRoutes, ...staticRouter, ...errorRouter],
   strict: false,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
