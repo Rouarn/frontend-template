@@ -1,4 +1,3 @@
-import authMenuList from '@/assets/json/authMenuList.json'
 import http from '@/service/request'
 import { PORT1 } from '@/service/request/servicePort'
 
@@ -21,10 +20,4 @@ export function fetchLogin(userName: string, password: string) {
   //     password,
   //   },
   // })
-}
-
-// 获取菜单列表
-export const getAuthMenuListApi = () => {
-  // return http.get<App.Menu.MenuOptions[]>(PORT1 + `/menu/list`, {}, { loading: false })
-  return Promise.resolve(authMenuList)
 }

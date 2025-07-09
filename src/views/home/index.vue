@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useThemeStore } from '@/stores/modules/theme'
+import { GlobalConfig } from '@/enum'
 import { $t } from '@/locales'
 
 const themeStore = useThemeStore()
@@ -27,6 +28,6 @@ setTimeout(() => {
 
     <icon-uil-search class="text-15px text-#c2c2c2 max-2xl h-3" />
 
-    <NButton @click="router.push('/login')">登录</NButton>
+    <NButton @click="router.push(GlobalConfig.LOGIN_URL)">登录</NButton>
   </NSpace>
 </template>

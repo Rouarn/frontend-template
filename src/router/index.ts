@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { errorRouter, staticRouter } from '@/router/modules/static-router'
 import { useTitle } from '@vueuse/core'
+import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
 
@@ -26,10 +27,15 @@ const routerMode = {
  * */
 const router = createRouter({
   history: routerMode[mode](),
-  routes: [...staticRouter, ...errorRouter],
+  routes: [...routes, ...staticRouter, ...errorRouter],
   strict: false,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
+
+// 热更新
+if (import.meta.hot) {
+  handleHotUpdate(router)
+}
 
 /**
  * @description 路由拦截 beforeEach
@@ -41,7 +47,7 @@ router.beforeEach(async (to, _from, next) => {
   // 2.动态设置标题
   const title = import.meta.env.VITE_APP_TITLE
   useTitle(to.meta.title ? `${to.meta.title} - ${title}` : title)
-
+  console.log(router.getRoutes(), 'router.getRoutes()')
   // 7.正常访问页面
   next()
 })

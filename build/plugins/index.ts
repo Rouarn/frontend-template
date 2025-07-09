@@ -10,6 +10,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+import VueRouter from 'unplugin-vue-router/vite'
 import type { PluginOption } from 'vite'
 import progress from 'vite-plugin-progress'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -25,6 +26,11 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
   const collectionName = VITE_ICON_LOCAL_PREFIX.replace(`${VITE_ICON_PREFIX}-`, '')
 
   const plugins: PluginOption = [
+    VueRouter({
+      routesFolder: ['src/views'],
+      dts: 'src/typings/typed-router.d.ts',
+      extensions: ['.vue', '.tsx'],
+    }),
     vue(),
     vueJsx(),
     vueDevTools({ launchEditor: VITE_DEVTOOLS_LAUNCH_EDITOR }),

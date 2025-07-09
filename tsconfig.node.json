@@ -6,13 +6,13 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "node", "naive-ui/volar"],
+    "types": ["vite/client", "node", "naive-ui/volar", "unplugin-vue-router/client"],
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": false,

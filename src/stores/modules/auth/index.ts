@@ -1,6 +1,5 @@
 import { useRoute, useRouter } from 'vue-router'
-import { fetchLogin, getAuthMenuListApi } from '@/service/api/login'
-import { getFlatMenuList, getShowMenuList } from './shared'
+import { fetchLogin } from '@/service/api/login'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
 
@@ -20,21 +19,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   // 是否已登录
   const isLogin = computed(() => Boolean(token.value))
 
-  // 菜单权限列表
-  const menuList = ref<App.Global.Menu.MenuOptions[]>([])
-  // 菜单权限列表 ==> 左侧菜单栏渲染，需要剔除 isHide == true
-  const authMenuListGet = computed(() => getShowMenuList(menuList.value))
-  // 菜单权限列表 ==> 扁平化之后的一维数组菜单，主要用来添加动态路由
-  const flatMenuListGet = computed(() => getFlatMenuList(menuList.value))
-
   const setToken = (value: string) => {
     token.value = value
     window.localStorage.setItem('token', value)
-  }
-
-  const getAuthMenuList = async () => {
-    const { data } = await getAuthMenuListApi()
-    menuList.value = data
   }
 
   /**
@@ -66,10 +53,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     token,
     userInfo,
     isLogin,
-    authMenuListGet,
-    flatMenuListGet,
     login,
     setToken,
-    getAuthMenuList,
   }
 })
