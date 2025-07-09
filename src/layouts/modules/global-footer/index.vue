@@ -5,7 +5,9 @@ defineOptions({
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <NH1>GlobalFooter</NH1>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
