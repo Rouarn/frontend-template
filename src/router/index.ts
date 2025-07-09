@@ -72,6 +72,7 @@ router.beforeEach(async (to, _from, next) => {
 router.onError((error) => {
   window.NProgress?.done?.()
   console.warn('路由错误', error.message)
+  console.warn('路由错误', error.message)
 })
 
 /**
