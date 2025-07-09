@@ -1,3 +1,12 @@
+<route lang="json5">
+{
+  meta: {
+    layout: 'base-layout',
+    title: '首页',
+  },
+}
+</route>
+
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useThemeStore } from '@/stores/modules/theme'

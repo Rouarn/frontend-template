@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { errorRouter, staticRouter } from '@/router/modules/static-router'
+import { $t } from '@/locales'
 import { useTitle } from '@vueuse/core'
+import { setupLayouts } from 'virtual:generated-layouts'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 const mode = import.meta.env.VITE_ROUTER_MODE as 'hash' | 'history'
@@ -18,16 +20,22 @@ const routerMode = {
  * @param component ==> 视图文件路径
  * @param meta ==> 路由菜单元信息
  * @param meta.icon ==> 菜单和面包屑对应的图标
+ * @param meta.localIcon ==> 本地图标 (设置后 icon 字段将被忽略)
+ * @param meta.iconFontSize ==> 图标大小 (宽度和高度相同)
  * @param meta.title ==> 路由标题 (用作 document.title || 菜单的名称)
- * @param meta.activeMenu ==> 当前路由为详情页时，需要高亮的菜单
+ * @param meta.i18nKey ==> 路由国际化键 (设置后 title 字段将被忽略)
  * @param meta.isLink ==> 路由外链时填写的访问地址
  * @param meta.isFull ==> 菜单是否全屏 (示例：数据大屏页面)
  * @param meta.isKeepAlive ==> 当前路由是否缓存
- * @param meta.isConstant ==> 常规路由 (不需要权限 直接放行)
+ * @param meta.isAuth ==> 当前路由是否需要登录
+ * @param meta.hideInMenu ==> 是否在菜单中隐藏该路由
+ * @param meta.multiTab ==> 相同路径不同参数是否使用不同标签页
+ * @param meta.layout => 路由布局 可选值有 base-layout 和 blank-layout
+ * @default 'base-layout'
  * */
 const router = createRouter({
   history: routerMode[mode](),
-  routes: [...routes, ...staticRouter, ...errorRouter],
+  routes: [...setupLayouts(routes), ...staticRouter, ...errorRouter],
   strict: false,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
@@ -45,9 +53,14 @@ router.beforeEach(async (to, _from, next) => {
   window.NProgress?.start?.()
 
   // 2.动态设置标题
-  const title = import.meta.env.VITE_APP_TITLE
-  useTitle(to.meta.title ? `${to.meta.title} - ${title}` : title)
+  const AppTitle = import.meta.env.VITE_APP_TITLE
+  const { title, i18nKey } = to.meta
+  const subTitle = i18nKey ? $t(i18nKey) : (title ?? '')
+  const documentTitle = subTitle ? `${subTitle} - ${AppTitle}` : AppTitle
+  useTitle(documentTitle)
+
   console.log(router.getRoutes(), 'router.getRoutes()')
+
   // 7.正常访问页面
   next()
 })

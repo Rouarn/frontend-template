@@ -15,6 +15,7 @@ import type { PluginOption } from 'vite'
 import progress from 'vite-plugin-progress'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import Layouts from 'vite-plugin-vue-layouts'
 
 export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
   const { VITE_ICON_PREFIX, VITE_ICON_LOCAL_PREFIX, VITE_DEVTOOLS_LAUNCH_EDITOR } = viteEnv
@@ -30,9 +31,17 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
       routesFolder: ['src/views'],
       dts: 'src/typings/typed-router.d.ts',
       extensions: ['.vue', '.tsx'],
+      exclude: ['**/components/*.vue', '**/modules/*.vue'],
+      routeBlockLang: 'json5',
+      importMode: 'async',
     }),
     vue(),
     vueJsx(),
+    Layouts({
+      layoutsDirs: ['src/layouts'],
+      pagesDirs: 'src/views',
+      defaultLayout: 'base-layout',
+    }),
     vueDevTools({ launchEditor: VITE_DEVTOOLS_LAUNCH_EDITOR }),
     UnoCSS({
       presets: [
