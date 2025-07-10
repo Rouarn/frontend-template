@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { errorRouter, staticRouter } from '@/router/modules/static-router'
+import { useAuthStore } from '@/stores/modules/auth'
+import { GlobalConfig } from '@/enum'
 import { $t } from '@/locales'
 import { useTitle } from '@vueuse/core'
 import { setupLayouts } from 'virtual:generated-layouts'
@@ -61,6 +63,17 @@ router.beforeEach(async (to, _from, next) => {
   const subTitle = i18nKey ? $t(i18nKey) : (title ?? '')
   const documentTitle = subTitle ? `${subTitle} - ${AppTitle}` : AppTitle
   useTitle(documentTitle)
+
+  // 3.检查是否需要授权
+  if (to.meta.isAuth) {
+    const authStore = useAuthStore()
+
+    // 检查是否登录
+    if (!authStore.isLogin) {
+      // 跳转到登陆页
+      return next({ path: GlobalConfig.LOGIN_URL, replace: true, query: { redirect: to.fullPath } })
+    }
+  }
 
   // 7.正常访问页面
   next()

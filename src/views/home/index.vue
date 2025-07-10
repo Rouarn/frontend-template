@@ -13,7 +13,7 @@ import { useRouterPush } from '@/hooks/common/router'
 import { $t } from '@/locales'
 
 const themeStore = useThemeStore()
-const { toLogin } = useRouterPush()
+const { toLogin, routerPushByKey } = useRouterPush()
 
 const open = () => {
   window.$loading?.open()
@@ -37,5 +37,7 @@ setTimeout(() => {
     <icon-uil-search class="text-15px text-#c2c2c2 max-2xl h-3" />
 
     <NButton @click="toLogin()">登录</NButton>
+
+    <NButton @click="routerPushByKey('/about/')">关于</NButton>
   </NSpace>
 </template>

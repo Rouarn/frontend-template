@@ -1,11 +1,10 @@
-import { useRoute, useRouter } from 'vue-router'
 import { fetchLogin } from '@/service/api/login'
 import { SetupStoreId } from '@/enum'
+import { useRouterPush } from '@/hooks/common/router'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
-  const router = useRouter()
-  const route = useRoute()
+  const { redirectFromLogin } = useRouterPush()
 
   // token
   const token = ref(window.localStorage.getItem('token'))
@@ -29,18 +28,13 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
    *
    * @param userName User name
    * @param password Password
-   * @param [redirect=true] Whether to redirect after login. Default is `true`
+   * @param [redirect=true]登录后是否重定向。默认为“true”
    */
   async function login(userName: string, password: string, redirect = true) {
     const { data } = await fetchLogin(userName, password)
     setToken(data.token)
-    const needRedirect = route.query?.redirect as string
 
-    if (needRedirect && redirect) {
-      await router.push(needRedirect)
-    } else {
-      await router.push('/')
-    }
+    await redirectFromLogin(redirect)
 
     window.$notification?.success({
       title: '登录成功',

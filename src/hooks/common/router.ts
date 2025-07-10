@@ -77,7 +77,7 @@ export function useRouterPush(inSetup = true) {
   /**
    * Redirect from login
    *
-   * @param [needRedirect=true] Whether to redirect after login. Default is `true`
+   * @param [needRedirect=true]登录后是否重定向。默认为“true”
    */
   async function redirectFromLogin(needRedirect = true) {
     const redirect = route.value.query?.redirect as string
