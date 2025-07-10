@@ -1,9 +1,20 @@
-import { getCacheRouteNames } from './shared'
+import { getCacheRouteNames, getGlobalMenusByAuthRoutes } from './shared'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
 
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
+  /** Global menus */
+  const menus = ref<App.Global.Menu[]>([])
+
+  /** Initialize route */
+  async function initRoute() {
+    console.log('routes: ', routes)
+    menus.value = getGlobalMenusByAuthRoutes(routes)
+    console.log('menus.value: ', menus.value)
+  }
+
   /** Cache routes */
   const cacheRoutes = reactive<string[]>([])
 
@@ -27,7 +38,10 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     cacheRoutes.push(...getCacheRouteNames(routes))
   }
 
+  initRoute()
+
   return {
+    menus,
     cacheRoutes,
     addCacheRoutes,
     removeCacheRoutes,

@@ -2,9 +2,8 @@
 {
   meta: {
     layout: 'base-layout',
-    title: '关于',
+    title: '测试-详情',
     isAuth: true,
-    order: 5,
   },
 }
 </route>
@@ -13,6 +12,6 @@
 
 <template>
   <NSpace class="h-full w-full flex-center" vertical>
-    <NH1>关于</NH1>
+    <NH1>测试-详情</NH1>
   </NSpace>
 </template>

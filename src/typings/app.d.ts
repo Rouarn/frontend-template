@@ -74,6 +74,11 @@ declare namespace App {
 
   /** Global namespace */
   namespace Global {
+    /** Route path */
+    type RouteKey = keyof import('vue-router/auto-routes').RouteNamedMap
+    /** Route path */
+    type RoutePath = string
+
     /** The router push options */
     type RouterPushOptions = {
       query?: Record<string, string>
@@ -81,7 +86,28 @@ declare namespace App {
     }
 
     /** The global menu */
-    namespace Menu {}
+    type Menu = {
+      /**
+       * The menu key
+       *
+       * Equal to the route key
+       */
+      key: string
+      /** The menu label */
+      label: string
+      /** The menu i18n key */
+      i18nKey?: I18n.I18nKey | null
+      /** The menu order */
+      order?: number
+      /** The route key */
+      routeKey: RouteKey
+      /** The route path */
+      routePath: RoutePath
+      /** The menu icon */
+      icon?: () => VNode
+      /** The menu children */
+      children?: Menu[]
+    }
   }
 
   /**

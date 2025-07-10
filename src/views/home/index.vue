@@ -3,6 +3,7 @@
   meta: {
     layout: 'base-layout',
     title: '首页',
+    order: 0,
   },
 }
 </route>

@@ -2,9 +2,6 @@ import { useRouter } from 'vue-router'
 import globalRouter from '@/router'
 import { GlobalConfig } from '@/enum'
 import type { RouteLocationRaw } from 'vue-router'
-import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-type RouteKey = keyof RouteNamedMap
 
 /**
  * 路由跳转
@@ -21,7 +18,7 @@ export function useRouterPush(inSetup = true) {
 
   const routerBack = router.back
 
-  async function routerPushByKey(key: RouteKey, options?: App.Global.RouterPushOptions) {
+  async function routerPushByKey(key: App.Global.RouteKey, options?: App.Global.RouterPushOptions) {
     const { query, params } = options || {}
 
     const routeLocation: RouteLocationRaw & App.Global.RouterPushOptions = {
@@ -39,7 +36,7 @@ export function useRouterPush(inSetup = true) {
     return routerPush(routeLocation)
   }
 
-  function routerPushByKeyWithMetaQuery(key: RouteKey) {
+  function routerPushByKeyWithMetaQuery(key: App.Global.RouteKey) {
     const allRoutes = router.getRoutes()
     const meta = allRoutes.find((item) => item.name === key)?.meta || null
 
@@ -71,7 +68,7 @@ export function useRouterPush(inSetup = true) {
       redirect,
     }
 
-    return routerPushByKey(GlobalConfig.LOGIN_URL as RouteKey, options)
+    return routerPushByKey(GlobalConfig.LOGIN_URL as App.Global.RouteKey, options)
   }
 
   /**

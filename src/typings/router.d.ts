@@ -40,8 +40,19 @@ declare module 'vue-router' {
     localIcon?: string
     /** 图标大小，宽度和高度相同 */
     iconFontSize?: number
+    /** Router order */
+    order?: number | null
     /** 是否在菜单中隐藏该路由 */
     hideInMenu?: boolean | null
+    /**
+     * The menu key will be activated when entering the route
+     *
+     * The route is not in the menu
+     *
+     * @example
+     *   the route is "user_detail", if it is set to "user_list", the menu "user_list" will be activated
+     */
+    activeMenu?: App.Global.RouteKey | null
     /**
      * 默认情况下，相同的路由路径会共用一个标签页，即使查询参数不同。如果设置为 true，则不同查询参数的路由会使用不同的标签页
      */
