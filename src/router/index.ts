@@ -53,7 +53,9 @@ if (import.meta.hot) {
 /**
  * @description 路由拦截 beforeEach
  * */
-router.beforeEach(async (to, _from, next) => {
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
+
   // 1.NProgress 开始
   window.NProgress?.start?.()
 
@@ -66,13 +68,18 @@ router.beforeEach(async (to, _from, next) => {
 
   // 3.检查是否需要授权
   if (to.meta.isAuth) {
-    const authStore = useAuthStore()
-
     // 检查是否登录
     if (!authStore.isLogin) {
       // 跳转到登陆页
       return next({ path: GlobalConfig.LOGIN_URL, replace: true, query: { redirect: to.fullPath } })
     }
+  }
+
+  // 4.判断是否访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
+  if (to.path.toLocaleLowerCase() === GlobalConfig.LOGIN_URL) {
+    console.log(authStore.isLogin, 'authStore.isLogin')
+    if (authStore.isLogin) return next(from.fullPath)
+    return next()
   }
 
   // 7.正常访问页面

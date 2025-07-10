@@ -83,6 +83,7 @@ export function useRouterPush(inSetup = true) {
     const redirect = route.value.query?.redirect as string
 
     if (needRedirect && redirect) {
+      // 替换登录页为重定向页
       await routerPush(redirect)
     } else {
       await toHome()
