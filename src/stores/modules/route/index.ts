@@ -3,7 +3,6 @@ import { getCacheRouteNames, getGlobalMenusByAuthRoutes } from './shared'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
-import { routes } from 'vue-router/auto-routes'
 
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   const { bool: isInitConstantRoute, setBool: setIsInitConstantRoute } = useBoolean()
@@ -12,7 +11,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   const menus = ref<App.Global.Menu[]>([])
 
   /** Initialize route */
-  async function initRoute() {
+  async function initRoute(routes: RouteRecordRaw[]) {
     if (isInitConstantRoute.value) return
 
     menus.value = getGlobalMenusByAuthRoutes(routes)
@@ -32,6 +31,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
    */
   function getCacheRoutes(routes: RouteRecordRaw[]) {
     cacheRoutes.value = getCacheRouteNames(routes)
+    console.log('cacheRoutes.value: ', cacheRoutes.value)
   }
 
   return {

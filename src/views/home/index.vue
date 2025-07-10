@@ -4,6 +4,8 @@
     layout: 'base-layout',
     title: '首页',
     order: 0,
+    icon: 'material-symbols:home-app-logo',
+    isKeepAlive: true,
   },
 }
 </route>

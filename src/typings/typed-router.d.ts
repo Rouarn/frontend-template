@@ -20,8 +20,13 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/about/': RouteRecordInfo<'/about/', '/about', Record<never, never>, Record<never, never>>,
     '/about/for-details': RouteRecordInfo<'/about/for-details', '/about/for-details', Record<never, never>, Record<never, never>>,
+    '/ceshi/': RouteRecordInfo<'/ceshi/', '/ceshi', Record<never, never>, Record<never, never>>,
+    '/ceshi/for-details': RouteRecordInfo<'/ceshi/for-details', '/ceshi/for-details', Record<never, never>, Record<never, never>>,
     '/home/': RouteRecordInfo<'/home/', '/home', Record<never, never>, Record<never, never>>,
-    '/home/ceshi/': RouteRecordInfo<'/home/ceshi/', '/home/ceshi', Record<never, never>, Record<never, never>>,
-    '/home/ceshi/for-details': RouteRecordInfo<'/home/ceshi/for-details', '/home/ceshi/for-details', Record<never, never>, Record<never, never>>,
+    '/link/bing/': RouteRecordInfo<'/link/bing/', '/link/bing', Record<never, never>, Record<never, never>>,
+    '/link/docs/': RouteRecordInfo<'/link/docs/', '/link/docs', Record<never, never>, Record<never, never>>,
+    '/link/gitee/': RouteRecordInfo<'/link/gitee/', '/link/gitee', Record<never, never>, Record<never, never>>,
+    '/link/github/': RouteRecordInfo<'/link/github/', '/link/github', Record<never, never>, Record<never, never>>,
+    '/link/juejin/': RouteRecordInfo<'/link/juejin/', '/link/juejin', Record<never, never>, Record<never, never>>,
   }
 }

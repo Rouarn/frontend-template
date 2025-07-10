@@ -7,20 +7,14 @@ import type { _RouteRecordBase, RouteLocationNormalizedLoaded, RouteRecordRaw } 
  *
  * @param routes Vue routes (two levels)
  */
-export function getCacheRouteNames(routes: RouteRecordRaw[]) {
-  const cacheNames: App.Global.RouteKey[] = []
+export function getCacheRouteNames(routes: RouteRecordRaw[]): App.Global.RouteKey[] {
+  return routes.flatMap((route) => {
+    const current = route.component && route.meta?.isKeepAlive ? [route.name as App.Global.RouteKey] : []
 
-  routes.forEach((route) => {
-    console.log('route: ', route)
-    // 只得到最后两层路由，它有组件
-    route.children?.forEach((child) => {
-      if (child.component && child.meta?.iskeepAlive) {
-        cacheNames.push(child.name as App.Global.RouteKey)
-      }
-    })
+    const children = Array.isArray(route.children) ? getCacheRouteNames(route.children) : []
+
+    return [...current, ...children]
   })
-
-  return cacheNames
 }
 
 /**
@@ -32,7 +26,7 @@ function getGlobalMenuByBaseRoute(route: RouteLocationNormalizedLoaded | RouteRe
   const { SvgIconVNode } = useSvgIcon()
 
   const { name, path } = route
-  const { title, i18nKey, icon = import.meta.env.VITE_MENU_ICON, localIcon, iconFontSize, order } = route.meta ?? {}
+  const { title, i18nKey, icon = import.meta.env.VITE_MENU_ICON, localIcon, iconFontSize, order = -1 } = route.meta ?? {}
 
   const label = i18nKey ? $t(i18nKey) : title!
 
@@ -40,7 +34,7 @@ function getGlobalMenuByBaseRoute(route: RouteLocationNormalizedLoaded | RouteRe
     key: name as string,
     label,
     i18nKey,
-    order: order ?? -1,
+    order: Number(order),
     routeKey: name as App.Global.RouteKey,
     routePath: path as App.Global.RouteKey,
     icon: SvgIconVNode({ icon, localIcon, fontSize: iconFontSize || 20 }),
@@ -74,7 +68,7 @@ export function getGlobalMenusByAuthRoutes(routes: RouteRecordRaw[]) {
 
     function filterEmptyMenu(menu: App.Global.Menu): boolean {
       // 检查是否有必要的字段
-      const hasRequiredFields = menu.key && menu.label && menu.routeKey
+      const hasRequiredFields = menu.label || menu.i18nKey
       // 如果有子菜单，递归检查
       const hasValidChildren = menu.children ? menu.children.some(filterEmptyMenu) : true
 
@@ -105,16 +99,18 @@ export function getGlobalMenusByAuthRoutes(routes: RouteRecordRaw[]) {
     return menus.filter(filterEmptyMenu)
   }
 
-  const menus = calcMenu(routes).sort((a, b) => {
-    const orderA = a.order ?? -1
-    const orderB = b.order ?? -1
+  const menus = calcMenu(routes)
+    .sort((a, b) => {
+      const orderA = a.order ?? -1
+      const orderB = b.order ?? -1
 
-    // 将 order 为 -1 的项排在最后
-    if (orderA === -1 && orderB !== -1) return 1
-    if (orderA !== -1 && orderB === -1) return -1
+      // 将 order 为 -1 的项排在最后
+      if (orderA === -1 && orderB !== -1) return 1
+      if (orderA !== -1 && orderB === -1) return -1
 
-    return orderA - orderB // 正常按升序排序
-  })
+      return orderA - orderB // 正常按升序排序
+    })
+    .map(({ order, ...rest }) => rest)
 
   return menus
 }

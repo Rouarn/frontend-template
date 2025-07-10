@@ -10,10 +10,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppProvider: typeof import('./../components/common/app-provider.vue')['default']
     ExceptionBase: typeof import('./../components/common/exception-base.vue')['default']
-    'IconIconParkOutline:arrowDown': typeof import('~icons/icon-park-outline/arrow-down')['default']
     IconLocalBanner: typeof import('~icons/local/banner')['default']
     IconMdiArrowDownThin: typeof import('~icons/mdi/arrow-down-thin')['default']
-    IconUilBell: typeof import('~icons/uil/bell')['default']
     IconUilSearch: typeof import('~icons/uil/search')['default']
     NBackTop: typeof import('naive-ui')['NBackTop']
     NButton: typeof import('naive-ui')['NButton']
@@ -21,7 +19,6 @@ declare module 'vue' {
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NFlex: typeof import('naive-ui')['NFlex']
     NH1: typeof import('naive-ui')['NH1']
-    NInput: typeof import('naive-ui')['NInput']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
