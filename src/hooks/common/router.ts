@@ -37,7 +37,6 @@ export function useRouterPush(inSetup = true) {
   }
 
   function routerPushByKeyWithMetaQuery(key: App.Global.RouteKey) {
-    console.log('key: ', key)
     const allRoutes = router.getRoutes()
     const meta = allRoutes.find((item) => item.name === key)?.meta || null
 

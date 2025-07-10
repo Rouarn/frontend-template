@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { errorRouter, staticRouter } from '@/router/modules/static-router'
 import { useAuthStore } from '@/stores/modules/auth'
+import { useRouteStore } from '@/stores/modules/route'
 import { GlobalConfig } from '@/enum'
 import { $t } from '@/locales'
 import { useTitle } from '@vueuse/core'
@@ -55,6 +56,7 @@ if (import.meta.hot) {
  * */
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
+  const routeStore = useRouteStore()
 
   // 1.NProgress 开始
   window.NProgress?.start?.()
@@ -66,7 +68,12 @@ router.beforeEach(async (to, from, next) => {
   const documentTitle = subTitle ? `${subTitle} - ${AppTitle}` : AppTitle
   useTitle(documentTitle)
 
-  // 3.检查是否需要授权
+  // 3.初始化路由菜单
+  if (!routeStore.isInitConstantRoute) {
+    await routeStore.initRoute()
+  }
+
+  // 4.检查是否需要授权
   if (to.meta.isAuth) {
     // 检查是否登录
     if (!authStore.isLogin) {
@@ -75,7 +82,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  // 4.判断是否访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
+  // 5.判断是否访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === GlobalConfig.LOGIN_URL) {
     if (authStore.isLogin) return next(from.fullPath)
     return next()

@@ -2,20 +2,25 @@ import { useSvgIcon } from '@/hooks/common/icon'
 import { $t } from '@/locales'
 import type { _RouteRecordBase, RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
-export const getCacheRouteNames = (routes: RouteRecordRaw[]) => {
-  const cacheRouteNames: string[] = []
+/**
+ * Get cache route names
+ *
+ * @param routes Vue routes (two levels)
+ */
+export function getCacheRouteNames(routes: RouteRecordRaw[]) {
+  const cacheNames: App.Global.RouteKey[] = []
 
-  routes.forEach((route: RouteRecordRaw) => {
-    if (route.meta?.isKeepAlive) {
-      cacheRouteNames.push(<string>route.name)
-    }
-
-    if (route.children) {
-      cacheRouteNames.push(...getCacheRouteNames(route.children))
-    }
+  routes.forEach((route) => {
+    console.log('route: ', route)
+    // 只得到最后两层路由，它有组件
+    route.children?.forEach((child) => {
+      if (child.component && child.meta?.iskeepAlive) {
+        cacheNames.push(child.name as App.Global.RouteKey)
+      }
+    })
   })
 
-  return cacheRouteNames
+  return cacheNames
 }
 
 /**

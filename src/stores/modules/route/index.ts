@@ -1,3 +1,4 @@
+import useBoolean from '@/utils/use-boolean'
 import { getCacheRouteNames, getGlobalMenusByAuthRoutes } from './shared'
 import { SetupStoreId } from '@/enum'
 import { defineStore } from 'pinia'
@@ -5,47 +6,38 @@ import type { RouteRecordRaw } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
+  const { bool: isInitConstantRoute, setBool: setIsInitConstantRoute } = useBoolean()
+
   /** Global menus */
   const menus = ref<App.Global.Menu[]>([])
 
   /** Initialize route */
   async function initRoute() {
-    console.log('routes: ', routes)
+    if (isInitConstantRoute.value) return
+
     menus.value = getGlobalMenusByAuthRoutes(routes)
-    console.log('menus.value: ', menus.value)
+
+    getCacheRoutes(routes)
+
+    setIsInitConstantRoute(true)
   }
 
   /** Cache routes */
-  const cacheRoutes = reactive<string[]>([])
+  const cacheRoutes = ref<App.Global.RouteKey[]>([])
 
-  const addCacheRoutes = (name: string) => {
-    if (!cacheRoutes.includes(name)) {
-      cacheRoutes.push(name)
-    }
+  /**
+   * Get cache routes
+   *
+   * @param routes Vue routes
+   */
+  function getCacheRoutes(routes: RouteRecordRaw[]) {
+    cacheRoutes.value = getCacheRouteNames(routes)
   }
-  const removeCacheRoutes = (name: string) => {
-    const index = cacheRoutes.indexOf(name)
-    if (index > -1) {
-      cacheRoutes.splice(index, 1)
-    }
-  }
-  const resetCacheRoutes = () => {
-    cacheRoutes.splice(0, cacheRoutes.length)
-  }
-
-  const setCacheRoutes = (routes: RouteRecordRaw[]) => {
-    resetCacheRoutes()
-    cacheRoutes.push(...getCacheRouteNames(routes))
-  }
-
-  initRoute()
 
   return {
     menus,
     cacheRoutes,
-    addCacheRoutes,
-    removeCacheRoutes,
-    resetCacheRoutes,
-    setCacheRoutes,
+    isInitConstantRoute,
+    initRoute,
   }
 })
