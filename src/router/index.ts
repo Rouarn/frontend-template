@@ -68,7 +68,7 @@ router.beforeEach(async (to, from, next) => {
   const documentTitle = subTitle ? `${subTitle} - ${AppTitle}` : AppTitle
   useTitle(documentTitle)
 
-  // 3.初始化路由菜单
+  // 3.初始化路由菜单 (提供给header菜单使用,路由使用的是基于文件自动生成的)
   if (!routeStore.isInitConstantRoute) {
     await routeStore.initRoute()
   }
@@ -78,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
     // 检查是否登录
     if (!authStore.isLogin) {
       // 跳转到登陆页
-      return next({ path: GlobalConfig.LOGIN_URL, replace: true, query: { redirect: to.fullPath } })
+      return next({ path: GlobalConfig.LOGIN_URL, replace: false, query: { redirect: to.fullPath } })
     }
   }
 
@@ -97,7 +97,6 @@ router.beforeEach(async (to, from, next) => {
  * */
 router.onError((error) => {
   window.NProgress?.done?.()
-  console.warn('路由错误', error.message)
   console.warn('路由错误', error.message)
 })
 

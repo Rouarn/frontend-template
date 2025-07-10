@@ -50,7 +50,7 @@ export function useRouterPush(inSetup = true) {
   }
 
   async function toHome() {
-    return routerPushByKey(GlobalConfig.HOME_URL)
+    return routerPushByKey(GlobalConfig.HOME_URL as unknown as App.Global.RouteKey)
   }
 
   /**
@@ -68,7 +68,7 @@ export function useRouterPush(inSetup = true) {
       redirect,
     }
 
-    return routerPushByKey(GlobalConfig.LOGIN_URL as App.Global.RouteKey, options)
+    return routerPushByKey(GlobalConfig.LOGIN_URL as unknown as App.Global.RouteKey, options)
   }
 
   /**

@@ -18,10 +18,11 @@ const { toLogin, routerPushByKey } = useRouterPush()
 
 const open = () => {
   window.$loading?.open()
+
+  setTimeout(() => {
+    window.$loading?.close()
+  }, 1000)
 }
-setTimeout(() => {
-  window.$loading?.close()
-}, 2000)
 </script>
 
 <template>
