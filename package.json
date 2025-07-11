@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "description": "一个基于Vue3、Vite7、TypeScript、NaiveUI and UnoCSS的清新优雅前台模版。",
+  "author": {
+    "name": "Rouarn",
+    "email": "woyuxiaji@foxmail.com",
+    "url": "https://github.com/Rouarn"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Rouarn/frontend-template",
   "scripts": {
     "dev": "vite --mode development",
     "dev:prod": "vite --mode production",
@@ -95,5 +103,6 @@
     "*.md": [
       "prettier --write"
     ]
-  }
+  },
+  "website": "http://www.shixian.xyz"
 }

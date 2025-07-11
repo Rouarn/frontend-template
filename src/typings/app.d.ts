@@ -134,6 +134,21 @@ declare namespace App {
         updateConfirm: string
         updateCancel: string
       }
+      page: {
+        about: {
+          title: string
+          introduction: string
+          projectInfo: {
+            title: string
+            version: string
+            latestBuildTime: string
+            githubLink: string
+            previewLink: string
+          }
+          prdDep: string
+          devDep: string
+        }
+      }
     }
 
     type GetI18nKey<T extends Record<string, unknown>, K extends keyof T = keyof T> = K extends string
