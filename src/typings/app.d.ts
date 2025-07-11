@@ -126,6 +126,17 @@ declare namespace App {
     type Schema = {
       common: {
         backToHome: string
+        cancel: string
+        config: string
+        confirm: string
+        tip: string
+        logout: string
+        logoutConfirm: string
+        userCenter: string
+        yesOrNo: {
+          yes: string
+          no: string
+        }
       }
       system: {
         title: 'XiaJI'
@@ -148,6 +159,23 @@ declare namespace App {
           prdDep: string
           devDep: string
         }
+        login: {
+          common: {
+            loginOrRegister: string
+          }
+        }
+      }
+      icon: {
+        themeConfig: string
+        themeSchema: string
+        lang: string
+        fullscreen: string
+        fullscreenExit: string
+        reload: string
+        collapse: string
+        expand: string
+        pin: string
+        unpin: string
       }
     }
 

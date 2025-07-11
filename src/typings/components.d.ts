@@ -9,9 +9,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppProvider: typeof import('./../components/common/app-provider.vue')['default']
+    ButtonIcon: typeof import('./../components/custom/button-icon.vue')['default']
     ExceptionBase: typeof import('./../components/common/exception-base.vue')['default']
     'IconIon:expandOutline': typeof import('~icons/ion/expand-outline')['default']
     'IconIon:moon': typeof import('~icons/ion/moon')['default']
+    'IconIon:moonOutline': typeof import('~icons/ion/moon-outline')['default']
     'IconIon:notificationsOutline': typeof import('~icons/ion/notifications-outline')['default']
     'IconIon:search': typeof import('~icons/ion/search')['default']
     'IconIon:sunnyOutline': typeof import('~icons/ion/sunny-outline')['default']
@@ -19,6 +21,7 @@ declare module 'vue' {
     IconLocalLogo: typeof import('~icons/local/logo')['default']
     IconMdiArrowDownThin: typeof import('~icons/mdi/arrow-down-thin')['default']
     IconUilSearch: typeof import('~icons/uil/search')['default']
+    LookForward: typeof import('./../components/custom/look-forward.vue')['default']
     NA: typeof import('naive-ui')['NA']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NBackTop: typeof import('naive-ui')['NBackTop']
@@ -45,5 +48,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../components/custom/svg-icon.vue')['default']
+    ThemeSchemaSwitch: typeof import('./../components/common/theme-schema-switch.vue')['default']
   }
 }

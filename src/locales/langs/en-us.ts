@@ -1,6 +1,17 @@
 const local: App.I18n.Schema = {
   common: {
+    cancel: 'Cancel',
+    config: 'Config',
+    confirm: 'Confirm',
+    tip: 'Tip',
+    logout: 'Logout',
+    logoutConfirm: 'Are you sure you want to log out?',
     backToHome: 'Back to home',
+    userCenter: 'User Center',
+    yesOrNo: {
+      yes: 'Yes',
+      no: 'No',
+    },
   },
   system: {
     title: 'XiaJI',
@@ -23,6 +34,23 @@ const local: App.I18n.Schema = {
       prdDep: 'Production Dependency',
       devDep: 'Development Dependency',
     },
+    login: {
+      common: {
+        loginOrRegister: 'Login / Register',
+      },
+    },
+  },
+  icon: {
+    themeConfig: 'Theme Configuration',
+    themeSchema: 'Theme Schema',
+    lang: 'Switch Language',
+    fullscreen: 'Fullscreen',
+    fullscreenExit: 'Exit Fullscreen',
+    reload: 'Reload Page',
+    collapse: 'Collapse Menu',
+    expand: 'Expand Menu',
+    pin: 'Pin',
+    unpin: 'Unpin',
   },
 }
 

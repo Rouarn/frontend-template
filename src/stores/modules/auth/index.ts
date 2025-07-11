@@ -1,10 +1,13 @@
+import { useRoute } from 'vue-router'
 import { fetchLogin } from '@/service/api/login'
 import { SetupStoreId } from '@/enum'
 import { useRouterPush } from '@/hooks/common/router'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
-  const { redirectFromLogin } = useRouterPush()
+  const route = useRoute()
+  const authStore = useAuthStore()
+  const { toLogin, redirectFromLogin } = useRouterPush(false)
 
   // token
   const token = ref(window.localStorage.getItem('token'))
@@ -43,11 +46,33 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     })
   }
 
+  /** Reset auth store */
+  async function resetStore() {
+    recordUserId()
+
+    window.localStorage.removeItem('token')
+
+    authStore.$reset()
+
+    if (route.meta.isAuth) {
+      await toLogin()
+    }
+  }
+  /** Record the user ID of the previous login session Used to compare with the current user ID on next login */
+  function recordUserId() {
+    if (!userInfo.userId) {
+      return
+    }
+
+    // Store current user ID locally for next login comparison
+    window.localStorage.setItem('lastLoginUserId', userInfo.userId)
+  }
   return {
     token,
     userInfo,
     isLogin,
     login,
     setToken,
+    resetStore,
   }
 })

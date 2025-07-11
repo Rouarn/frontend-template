@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import UserAvatar from './components/user-avatar.vue'
+import ThemeSchemaSwitch from '@/components/common/theme-schema-switch.vue'
 import { useRouteStore } from '@/stores/modules/route'
+import { useThemeStore } from '@/stores/modules/theme'
 import { useRouterPush } from '@/hooks/common/router'
 
 defineOptions({
@@ -9,6 +12,7 @@ defineOptions({
 
 const route = useRoute()
 const routeStore = useRouteStore()
+const themeStore = useThemeStore()
 const { routerPushByKeyWithMetaQuery } = useRouterPush()
 
 const selectedKey = computed(() => {
@@ -62,31 +66,10 @@ const selectedKey = computed(() => {
         </NTooltip>
 
         <!-- 主题切换 -->
-        <NTooltip trigger="hover">
-          <template #trigger>
-            <NButton quaternary circle class="!p-2">
-              <icon-ion:sunny-outline class="text-lg dark:hidden" />
-              <icon-ion:moon class="text-lg hidden dark:block" />
-            </NButton>
-          </template>
-          切换主题
-        </NTooltip>
+        <ThemeSchemaSwitch :theme-schema="themeStore.themeScheme" :is-dark="themeStore.darkMode" @switch="themeStore.toggleThemeScheme" />
 
         <!-- 用户头像 -->
-        <NDropdown
-          trigger="hover"
-          :options="[
-            { label: '个人中心', key: 'profile' },
-            { label: '系统设置', key: 'settings' },
-            { type: 'divider', key: 'd1' },
-            { label: '退出登录', key: 'logout' },
-          ]"
-        >
-          <div class="flex items-center space-x-2 cursor-pointer pl-2">
-            <NAvatar round size="small" src="/src/assets/logo.svg" />
-            <span class="hidden md:inline">管理员</span>
-          </div>
-        </NDropdown>
+        <UserAvatar />
       </div>
     </div>
   </header>
