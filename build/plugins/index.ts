@@ -38,10 +38,10 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
     vue(),
     vueJsx(),
     Layouts({
-      layoutsDirs: ['src/layouts'],
+      layoutsDirs: ['src/layouts/components'],
       pagesDirs: ['src/views'],
       defaultLayout: 'base-layout',
-      exclude: ['**/components/*.vue', '**/modules/*.vue', '**/_*/**'],
+      exclude: ['**/_*/**'],
       importMode: () => 'async',
     }),
     vueDevTools({ launchEditor: VITE_DEVTOOLS_LAUNCH_EDITOR }),
