@@ -15,7 +15,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   // 用户信息
   const userInfo: Api.Auth.UserInfo = reactive({
     userId: '',
-    userName: '',
+    userName: '夏季',
   })
 
   // 是否已登录
