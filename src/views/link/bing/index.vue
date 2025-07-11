@@ -1,3 +1,11 @@
+<route lang="json5">
+{
+  meta: {
+    title: '必应',
+  },
+}
+</route>
+
 <template>
   <div class="card content-box">
     <IframePage url="http://www.shixian.xyz"></IframePage>

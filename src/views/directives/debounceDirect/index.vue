@@ -1,3 +1,11 @@
+<route lang="json5">
+{
+  meta: {
+    title: '防抖指令',
+  },
+}
+</route>
+
 <template>
   <div class="card content-box">
     <span class="text">防抖指令 🍇🍇🍇🍓🍓🍓</span>
@@ -12,5 +20,5 @@ const debounceClick = () => {
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@use '../index.scss' as *;
 </style>

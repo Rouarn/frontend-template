@@ -1,7 +1,6 @@
 <route lang="json5">
 {
   meta: {
-    layout: 'base-layout',
     title: '关于-详情',
     isAuth: true,
   },

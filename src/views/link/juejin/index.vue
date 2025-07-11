@@ -1,8 +1,16 @@
+<route lang="json5">
+{
+  meta: {
+    title: '掘金文档',
+  },
+}
+</route>
+
 <template>
   <div class="card content-box">
     <span class="text">
       掘金文档：
-      <a href="https://juejin.cn/user/3263814531551816/posts" target="_blank">https://juejin.cn/user/3263814531551816/posts</a>
+      <NA href="" target="_blank"></NA>
       🍒🍉🍊
     </span>
   </div>

@@ -1,3 +1,11 @@
+<route lang="json5">
+{
+  meta: {
+    title: '长按指令',
+  },
+}
+</route>
+
 <template>
   <div class="card content-box">
     <span class="text">长按指令 🍇🍇🍇🍓🍓🍓</span>

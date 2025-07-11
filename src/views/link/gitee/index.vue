@@ -1,8 +1,16 @@
+<route lang="json5">
+{
+  meta: {
+    title: 'Gitee',
+  },
+}
+</route>
+
 <template>
   <div class="card content-box">
     <span class="text">
       Gitee 仓库：
-      <a href="https://gitee.com/HalseySpicy/Geeker-Admin" target="_blank">https://gitee.com/HalseySpicy/Geeker-Admin</a> 🍒🍉🍊
+      <a href="https://github.com/Rouarn/frontend-template" target="_blank">https://github.com/Rouarn/frontend-template</a> 🍒🍉🍊
     </span>
   </div>
 </template>
