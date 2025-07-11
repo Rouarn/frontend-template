@@ -10,7 +10,7 @@
   <div class="card content-box">
     <span class="text">
       Gitee 仓库：
-      <a href="https://github.com/Rouarn/frontend-template" target="_blank">https://github.com/Rouarn/frontend-template</a> 🍒🍉🍊
+      <NA href="https://github.com/Rouarn/frontend-template" target="_blank">https://github.com/Rouarn/frontend-template</NA> 🍒🍉🍊
     </span>
   </div>
 </template>

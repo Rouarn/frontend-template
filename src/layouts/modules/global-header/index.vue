@@ -83,7 +83,7 @@ const selectedKey = computed(() => {
           ]"
         >
           <div class="flex items-center space-x-2 cursor-pointer pl-2">
-            <NAvatar round size="small" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
+            <NAvatar round size="small" src="/src/assets/logo.svg" />
             <span class="hidden md:inline">管理员</span>
           </div>
         </NDropdown>
@@ -92,8 +92,4 @@ const selectedKey = computed(() => {
   </header>
 </template>
 
-<style lang="scss" ascoped>
-.n-menu:not(.n-menu--horizontal) .n-menu-item-content--hover {
-  @apply bg-#f5f5ff dark:bg-#2d2d30;
-}
-</style>
+<style lang="scss" ascoped></style>
