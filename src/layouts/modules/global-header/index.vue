@@ -92,4 +92,4 @@ const selectedKey = computed(() => {
   </header>
 </template>
 
-<style lang="scss" ascoped></style>
+<style lang="scss" scoped></style>

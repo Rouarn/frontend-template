@@ -38,9 +38,9 @@ export default defineConfig((configEnv) => {
       open: viteEnv.VITE_OPEN === 'Y',
       cors: true,
       proxy: createViteProxy(viteEnv, enableProxy),
-      hmr: {
-        overlay: false, // 禁用默认的 HMR 错误遮罩
-      },
+      // hmr: {
+      //   overlay: false, // 禁用默认的 HMR 错误遮罩
+      // },
     },
     preview: {
       port: 9725,
