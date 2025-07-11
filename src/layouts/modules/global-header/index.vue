@@ -2,18 +2,22 @@
 import { useRoute } from 'vue-router'
 import UserAvatar from './components/user-avatar.vue'
 import ThemeSchemaSwitch from '@/components/common/theme-schema-switch.vue'
+import { useAppStore } from '@/stores/modules/app'
 import { useRouteStore } from '@/stores/modules/route'
 import { useThemeStore } from '@/stores/modules/theme'
 import { useRouterPush } from '@/hooks/common/router'
+import { useFullscreen } from '@vueuse/core'
 
 defineOptions({
   name: 'GlobalHeader',
 })
 
 const route = useRoute()
+const appStore = useAppStore()
 const routeStore = useRouteStore()
 const themeStore = useThemeStore()
 const { routerPushByKeyWithMetaQuery } = useRouterPush()
+const { isFullscreen, toggle } = useFullscreen()
 
 const selectedKey = computed(() => {
   const { hideInMenu, activeMenu } = route.meta
@@ -56,14 +60,9 @@ const selectedKey = computed(() => {
         </NBadge>
 
         <!-- 全屏切换 -->
-        <NTooltip trigger="hover">
-          <template #trigger>
-            <NButton quaternary circle class="!p-2">
-              <icon-ion:expand-outline class="text-lg" />
-            </NButton>
-          </template>
-          全屏
-        </NTooltip>
+        <FullScreen v-if="!appStore.isMobile" :full="isFullscreen" @click="toggle" />
+        <!-- 语言切换 -->
+        <LangSwitch :lang="appStore.locale" :lang-options="appStore.localeOptions" @change-lang="appStore.changeLocale" />
 
         <!-- 主题切换 -->
         <ThemeSchemaSwitch :theme-schema="themeStore.themeScheme" :is-dark="themeStore.darkMode" @switch="themeStore.toggleThemeScheme" />
