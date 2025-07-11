@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './plugins/assets'
+import { setupDirectives } from './plugins/directive'
 import { setupI18n } from './locales'
 import { setupAppVersionNotification, setupDayjs, setupIconifyOffline, setupLoading, setupNProgress } from './plugins'
 import router from './router'
@@ -16,6 +17,8 @@ function setupApp() {
   setupDayjs()
 
   const app = createApp(App)
+
+  setupDirectives(app)
 
   setupStore(app)
 

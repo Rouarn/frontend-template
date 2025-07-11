@@ -6,6 +6,8 @@
     order: 0,
     icon: 'material-symbols:home-app-logo',
     isKeepAlive: true,
+    guard: true,
+    guardName: 'home',
   },
 }
 </route>
