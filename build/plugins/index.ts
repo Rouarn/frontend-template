@@ -33,14 +33,16 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
       extensions: ['.vue', '.tsx'],
       exclude: ['**/components/*.vue', '**/modules/*.vue', '**/_*/**'],
       routeBlockLang: 'json5',
+      importMode: 'async',
     }),
     vue(),
     vueJsx(),
     Layouts({
       layoutsDirs: ['src/layouts'],
-      pagesDirs: 'src/views',
+      pagesDirs: ['src/views'],
       defaultLayout: 'base-layout',
-      exclude: ['**/_*/**'],
+      exclude: ['**/components/*.vue', '**/modules/*.vue', '**/_*/**'],
+      importMode: () => 'async',
     }),
     vueDevTools({ launchEditor: VITE_DEVTOOLS_LAUNCH_EDITOR }),
     UnoCSS({

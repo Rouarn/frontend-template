@@ -31,7 +31,6 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
    */
   function getCacheRoutes(routes: RouteRecordRaw[]) {
     cacheRoutes.value = getCacheRouteNames(routes)
-    console.log('cacheRoutes.value: ', cacheRoutes.value)
   }
 
   return {
