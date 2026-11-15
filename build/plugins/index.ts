@@ -26,7 +26,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string): Pl
     setupVuePlugin(),
     setupElegantRouterPlugin(),
     setupVueJsxPlugin(),
-    setupVueDevToolsPlugin(String(VITE_DEVTOOLS_LAUNCH_EDITOR)),
+    setupVueDevToolsPlugin(VITE_DEVTOOLS_LAUNCH_EDITOR),
     setupUnocssPlugin(VITE_ICON_PREFIX, localIconPath, collectionName),
     setupProgressPlugin(),
     setupAutoImportPlugin(),

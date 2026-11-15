@@ -231,17 +231,13 @@ Cookie 需要 CSRF 防护、严格同站/跨域配置，会明显增加与其他
 
 ### 环境变量
 
-真实 `.env*` 已被 git 忽略，仓库只保留 `*.example`；后端接口地址等环境相关项见示例文件。
+真实 `.env*` 已被 git 忽略，仓库只保留 `*.example`。每个键的用途、是否必填、默认值、示例与取值来源都写在示例文件里，改配置时以它们为准，不在 README 另维护一份清单：
 
-| 变量                    | 说明                       | 默认值              |
-| ----------------------- | -------------------------- | ------------------- |
-| `VITE_APP_TITLE`        | 应用标题                   | `Frontend Template` |
-| `VITE_PORT`             | 开发端口（避开后端 8848）  | `5173`              |
-| `VITE_ROUTER_MODE`      | 路由模式（hash / history） | `hash`              |
-| `VITE_SERVICE_BASE_URL` | 后端接口地址               | 环境相关            |
-| `VITE_HTTP_PROXY`       | 是否开启代理               | `Y`                 |
-| `VITE_BASE_URL`         | 应用基础路径               | `/`                 |
-| `VITE_STORAGE_PREFIX`   | 存储键前缀                 | `RA_`               |
+- `.env.example` — 所有模式共用：标题、基础路径、开发端口、代理开关、sourcemap、存储前缀、图标前缀等
+- `.env.development.example` — 开发环境：环境标识、路由模式、接口地址与代理映射表
+- `.env.production.example` — 生产环境：环境标识、路由模式、线上接口地址
+
+启动期只强制校验 `VITE_APP_TITLE`、`VITE_BASE_URL`、`VITE_SERVICE_BASE_URL` 三项（见 [build/config/env.ts](build/config/env.ts)），缺失直接报错；其余键留空即走默认值。所有 `VITE_` 前缀的键都会内联进浏览器产物，不能放密钥。
 
 ### Elegant Router 配置
 

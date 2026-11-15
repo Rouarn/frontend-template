@@ -31,8 +31,12 @@ declare namespace Env {
     readonly VITE_PORT: number
     /** 是否在浏览器中自动打开应用 */
     readonly VITE_OPEN: CommonType.YesOrNo
-    /** 是否使用 https */
-    readonly VITE_PROXY: string
+    /**
+     * 开发代理映射表，JSON 数组，每项为 [匹配前缀, 目标地址]
+     *
+     * 仅开发服务器（vp dev）读取；构建产物中不包含任何代理规则
+     */
+    readonly VITE_PROXY?: string
     /** 是否启用 HTTP 代理 */
     readonly VITE_HTTP_PROXY: CommonType.YesOrNo
     /** 是否启用代理日志 */
@@ -57,6 +61,12 @@ declare namespace Env {
      * 该前缀以图标前缀开头
      */
     readonly VITE_ICON_LOCAL_PREFIX: 'icon-local'
+    /**
+     * 菜单项缺省图标（Iconify 图标名）
+     *
+     * 路由 meta 未配置 icon / localIcon 时兜底渲染；未设置则菜单项不渲染图标
+     */
+    readonly VITE_MENU_ICON?: string
     /**
      * Iconify API 提供者地址
      *
